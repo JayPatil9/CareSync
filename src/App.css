@@ -1,0 +1,50 @@
+
+
+body {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    padding:0;
+    height:100%;
+    max-width:max-content;
+}
+
+#root {
+    min-height: 100vh;
+}
+
+nav {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    background-color: #21222A;
+    height: 30px;
+    width: 100%;
+    padding: 0 25px;
+}
+
+nav > h3, nav > h5 {
+    margin: 0;
+}
+
+nav > h2 {
+    margin-right: auto;
+    color: #61DAFB;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+nav > h5 {
+    color: #DEEBF8;
+    font-weight: 600;
+    margin-left: auto;
+}
+
+nav > img {
+    height: 30px;
+    margin-right: 7px;
+}
+
+.tog-txt {
+    border:2px solid black;
+    margin-right: auto;
+}
