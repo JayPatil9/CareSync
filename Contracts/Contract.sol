@@ -10,37 +10,75 @@ contract CareSync {
 
     struct Patient {
         address id;
-        string name;
-        string imgHash;
-        uint height;
-        uint weight;
-        uint next_appointment;
-        uint contact;
-        uint emergency_contact;
-        Prescription[] prescriptions;
-        string[] billsHash;
-        string[] reportsHash;
+        // string name;
+        // string gender;
+        // uint age;
+        // uint dob;
+        // string imgHash;
+        // uint height;
+        // uint weight;
+        // uint contact;
+        // uint emergency_contact;
+
+        string jsonHash;
+
+        // uint next_appointment;
+        // Prescription[] prescriptions;
+        // string[] billsHash;
+        // string[] reportsHash;
     }
+
+    
 
     struct Doctor {
         address id;
-        string name;
-        string speciality;
-        string imgHash;
-        uint contact;
-        uint emergency_contact;
+
+
+        // string name;
+        // string speciality;
+        // string imgHash;
+        // uint contact;
+        // string sch;
+
+        string jsonHash;
+
+        // string cvHash;
+        // string[] payment;
 
     }
-
-    uint numPatient;
-    uint numDoctors;
 
     mapping (address => Doctor) public doctors;
     mapping (address => Patient) public patients;
 
-    constructor() {
-        numDoctors = 0;
-        numPatient = 0;
+
+
+    function addPatient(string memory _jsonHash, address _patientId) public {
+
+        Patient memory newPatient = Patient({
+            id: _patientId,
+            jsonHash: _jsonHash
+        });
+
+        patients[_patientId] = newPatient;
     }
+        
+    function addDoctor(string memory _jsonHash, address _doctorId) public {
+
+        Doctor memory newDoctor = Doctor({
+            id: _doctorId,
+            jsonHash: _jsonHash
+        });
+        doctors[_doctorId] = newDoctor;
+    }
+
+
+    function getPatient(address _id) public view returns (string memory){
+        return patients[_id].jsonHash;
+    }
+
+    function getDoctor(address _id) public view returns (string memory){
+        return doctors[_id].jsonHash;
+    }
+
 
 }
