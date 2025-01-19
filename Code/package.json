@@ -1,0 +1,36 @@
+{
+    "name": "new",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "start": "react-scripts start --host 0.0.0.0",
+        "dev": "vite",
+        "build": "vite build",
+        "lint": "eslint .",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "base64-arraybuffer": "^1.0.2",
+        "dotenv": "^16.4.7",
+        "dotenv-webpack": "^8.1.0",
+        "pinata": "^1.10.1",
+        "pinata-web3": "^0.5.4",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-router-dom": "^6.3.0",
+        "web3": "^4.7.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.11.1",
+        "@types/react": "^18.3.10",
+        "@types/react-dom": "^18.3.0",
+        "@vitejs/plugin-react": "^4.3.2",
+        "eslint": "^9.11.1",
+        "eslint-plugin-react": "^7.37.0",
+        "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+        "eslint-plugin-react-refresh": "^0.4.12",
+        "globals": "^15.9.0",
+        "vite": "^5.4.8"
+    }
+}
