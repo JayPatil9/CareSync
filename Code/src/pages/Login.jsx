@@ -22,7 +22,7 @@ export default function Login() {
 
     return (
         <div className="login--body">
-        <div className={"container "+ toggle} id="container">
+        <div className={"login--container "+ toggle} id="container">
         <div className="form-container sign-up">
             <form>
                 <h1>Sign In</h1>

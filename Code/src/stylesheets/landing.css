@@ -1,6 +1,6 @@
 /* General styles */
-body {
-    margin: 0;
+.landing--body {
+    /* margin: 0; */
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(120deg, #2a8b8e, #76c6c9, #ffffff);
     color: #ffffff;

@@ -4,7 +4,8 @@ import LandingPage from './pages/Home'
 import Login from './pages/Login'
 import SP from './pages/SignupPatient'
 import SD from './pages/SignupDoctor'
-import Dashboard from './pages/Dashboard'
+import Dashboard from './pages/PDashboard'
+import './App.css'
 
 
 createRoot(document.getElementById('root')).render(

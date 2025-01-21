@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-import { contractABI } from '../data';
+import { contractABI } from './data';
 
 const contractAddress = import.meta.env.VITE_CONTRACT_ADDRESS;
 

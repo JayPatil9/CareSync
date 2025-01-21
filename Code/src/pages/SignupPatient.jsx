@@ -9,7 +9,7 @@ const gateway = import.meta.env.VITE_GATEWAY;
 
 export default function patientForm() {
 
-    const [imgFile, setImgfile] = useState(null);
+    const [imgFile, setImgFile] = useState(null);
     const [name, setName] = useState(null);
     const [contact, setContact] = useState(null);
     const [isImg, setIsImg] = useState(false);
@@ -57,7 +57,7 @@ export default function patientForm() {
                     type="file"
                     id="imgfile"
                     required={true}
-                    onChange={(e) => setImgfile(e.target.files[0])} />
+                    onChange={(e) => setImgFile(e.target.files[0])} />
                 <br />
                 <label>Name:-</label><br />
                 <input

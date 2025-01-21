@@ -12,6 +12,7 @@ const LandingPage = () => {
 
 
   return (
+    <div className="landing--body">
     <div className="landing-container">
        
       {/* Header Section */}
@@ -66,6 +67,7 @@ const LandingPage = () => {
           Fully decentralized and completely secure. You privacy is utmost important to you and so it is for us. Delve into the new age healthcare system.
         </p>
       </div>
+    </div>
     </div>
   );
 };
