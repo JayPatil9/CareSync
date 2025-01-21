@@ -28,6 +28,11 @@ export const contractABI = [
 				"internalType": "address",
 				"name": "_patientId",
 				"type": "address"
+			},
+			{
+				"internalType": "string[]",
+				"name": "_doctors",
+				"type": "string[]"
 			}
 		],
 		"name": "addPatient",
@@ -82,11 +87,68 @@ export const contractABI = [
 		"inputs": [
 			{
 				"internalType": "address",
+				"name": "_patientID",
+				"type": "address"
+			}
+		],
+		"name": "getNextAppointment",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
 				"name": "_id",
 				"type": "address"
 			}
 		],
 		"name": "getPatient",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_patientID",
+				"type": "address"
+			}
+		],
+		"name": "getPatientDoctors",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_patientID",
+				"type": "address"
+			}
+		],
+		"name": "getVitals",
 		"outputs": [
 			{
 				"internalType": "string",
@@ -116,9 +178,55 @@ export const contractABI = [
 				"internalType": "string",
 				"name": "jsonHash",
 				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "next_appointment",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "vitalsHash",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_patientID",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_vitalHash",
+				"type": "string"
+			}
+		],
+		"name": "setVitals",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_patientID",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_nextAppointment",
+				"type": "string"
+			}
+		],
+		"name": "setnextAppointment",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	}
-];
+]

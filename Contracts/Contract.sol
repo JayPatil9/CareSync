@@ -62,16 +62,24 @@ contract CareSync {
         patients[_patientId] = newPatient;
     }
 
+    function getPatient(address _id) public view returns (string memory){
+        return patients[_id].jsonHash;
+    }
+
     function setVitals(address _patientID,string memory _vitalHash) public {
-
         patients[_patientID].vitalsHash = _vitalHash;
+    }
 
+    function getVitals(address _patientID) public view returns (string memory) {
+        return patients[_patientID].vitalsHash;
     }
 
     function setnextAppointment(address _patientID, string memory _nextAppointment) public {
-
         patients[_patientID].next_appointment = _nextAppointment;
+    }
 
+    function getNextAppointment(address _patientID) public view returns (string memory ){
+        return patients[_patientID].next_appointment;
     }
         
     function addDoctor(string memory _jsonHash, address _doctorId) public {
@@ -81,10 +89,6 @@ contract CareSync {
             jsonHash: _jsonHash
         });
         doctors[_doctorId] = newDoctor;
-    }
-
-    function getPatient(address _id) public view returns (string memory){
-        return patients[_id].jsonHash;
     }
 
     function getDoctor(address _id) public view returns (string memory){
