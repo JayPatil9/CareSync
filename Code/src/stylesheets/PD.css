@@ -9,7 +9,7 @@
   }
   
   /* Section Styling */
-  #sec {
+  .pd--sec {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -23,11 +23,11 @@
   }
   
   /* Logo Styling */
-  #logo {
+  .pd--logo {
     flex: 0 0 auto;
   }
   
-  #logo img {
+  .pd--logo img {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -36,13 +36,13 @@
   }
   
   /* Navigation Menu Styling */
-  .container {
+  .pd--container {
     display: flex;
     gap: 20px;
     list-style-type: none;
   }
   
-  .container a {
+  .pd--container a {
     text-decoration: none;
     color: #00796b;
     font-weight: bold;

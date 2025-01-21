@@ -2,8 +2,8 @@ import React from "react";
 
 export const NavBar = ({ menuItems, logoSrc, profileSrc }) => {
   return (
-    <section id="sec">
-      <div id="logo">
+    <section className="pd--sec">
+      <div className="pd--logo">
         <img src={logoSrc} alt="Logo" />
       </div>
       <ul className="container">
