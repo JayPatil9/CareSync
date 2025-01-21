@@ -3,11 +3,6 @@ pragma solidity ^0.8.0;
 
 contract CareSync {
 
-    struct Prescription {
-        bool expired;
-        string imgHash;
-    }
-
     struct Patient {
         address id;
         // string name;
@@ -22,8 +17,10 @@ contract CareSync {
 
         string jsonHash;
 
-        // uint next_appointment;
-        // Prescription[] prescriptions;
+        string next_appointment;
+        string[] doctors;
+        string vitalsHash;
+        // string[] prescriptions;
         // string[] billsHash;
         // string[] reportsHash;
     }
@@ -52,14 +49,29 @@ contract CareSync {
 
 
 
-    function addPatient(string memory _jsonHash, address _patientId) public {
+    function addPatient(string memory _jsonHash, address _patientId,string[] memory _doctors) public {
 
         Patient memory newPatient = Patient({
             id: _patientId,
-            jsonHash: _jsonHash
+            jsonHash: _jsonHash,
+            next_appointment: "",
+            doctors: _doctors,
+            vitalsHash: ""
         });
 
         patients[_patientId] = newPatient;
+    }
+
+    function setVitals(address _patientID,string memory _vitalHash) public {
+
+        patients[_patientID].vitalsHash = _vitalHash;
+
+    }
+
+    function setnextAppointment(address _patientID, string memory _nextAppointment) public {
+
+        patients[_patientID].next_appointment = _nextAppointment;
+
     }
         
     function addDoctor(string memory _jsonHash, address _doctorId) public {
@@ -70,7 +82,6 @@ contract CareSync {
         });
         doctors[_doctorId] = newDoctor;
     }
-
 
     function getPatient(address _id) public view returns (string memory){
         return patients[_id].jsonHash;

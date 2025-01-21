@@ -50,27 +50,27 @@
     transition: color 0.3s, transform 0.3s;
   }
   
-  .container a:hover {
+  .pd--container a:hover {
     color: #004d40;
     transform: scale(1.1);
   }
   
-  .container li {
+  .pd--container li {
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
   }
   
-  .container li:hover {
+  .pd--container li:hover {
     background-color: #f0f0f0;
   }
   
   /* Profile Image Styling */
-  #profile {
+  .pd--profile {
     margin-left: auto;
   }
   
-  #profile img {
+  .pd--profile img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -79,7 +79,7 @@
   }
   
   /* Content Section */
-  .contentcontainer {
+  .pd--contentcontainer {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -90,21 +90,21 @@
     margin: auto;
   }
   
-  .left-div,
-  .top-right,
-  .bottom-right {
+  .pd--left-div,
+  .pd--top-right,
+  .pd--bottom-right {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .left-div {
+  .pd--left-div {
     flex: 1 1 60%;
     min-width: 300px;
   }
   
-  .right-divs {
+  .pd--right-divs {
     flex: 1 1 35%;
     display: flex;
     flex-direction: column;
@@ -112,7 +112,7 @@
     min-width: 300px;
   }
   
-  h3 {
+  .pd--h3 {
     font-size: 20px;
     margin-bottom: 10px;
     color: #2a8b8e;
@@ -120,18 +120,18 @@
     padding-bottom: 5px;
   }
   
-  p {
+  .pd--p1 {
     font-size: 16px;
     margin-bottom: 10px;
     padding: 10px;
   }
   
-  p:hover {
+  .pd--p1:hover {
     background-color: #f9f9f9;
   }
   
   /* Footer Section */
-  .floor {
+  .pd--floor {
     width: 100%;
     background-color: #ffffff;
     padding: 20px;
@@ -139,14 +139,14 @@
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
   }
   
-  ul {
+  .pd--ul {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 20px;
   }
   
-  ul li {
+  .pd--ul li {
     list-style: none;
     margin: 10px;
     color: #00796b;
@@ -155,7 +155,7 @@
     transition: color 0.3s, transform 0.3s;
   }
   
-  ul li:hover {
+  .pd--ul li:hover {
     color: #004d40;
     transform: scale(1.1);
   }
@@ -167,43 +167,43 @@
   
   /* Responsive Design */
   @media (max-width: 768px) {
-    #sec {
+    .pd--sec {
       flex-direction: column;
       align-items: center;
       height: auto;
       padding: 15px;
     }
   
-    #logo {
+    .pd--logo {
       margin-bottom: 15px;
     }
   
-    .container {
+    .pd--container {
       flex-direction: column;
       align-items: center;
       gap: 15px;
     }
   
-    .contentcontainer {
+    .pd--contentcontainer {
       flex-direction: column;
     }
   
-    .left-div,
-    .right-divs {
+    .pd--left-div,
+    .pd--right-divs {
       width: 100%;
     }
   
-    #profile {
+    .pd--profile {
       margin-top: 10px;
     }
   
-    ul {
+    .pd--ul {
       flex-direction: column;
       gap: 10px;
     }
   }
 
-  .floor {
+  .pd--floor {
     width: 100%;
     background-color: #ffffff;
     padding: 20px;
@@ -214,7 +214,7 @@
     left: 0;
   }
   
-  .floor ul {
+  .pd--floor ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center; /* Center-align items */
@@ -223,7 +223,7 @@
     margin: 0;
   }
   
-  .floor ul li {
+  .pd--floor ul li {
     list-style: none;
     font-size: 18px;
     color: #00796b;
@@ -232,30 +232,30 @@
     transition: color 0.3s, transform 0.3s;
   }
   
-  .floor ul li:hover {
+  .pd--floor ul li:hover {
     color: #004d40; /* Darker shade on hover */
     transform: scale(1.1); /* Slight zoom effect */
   }
   
   /* Responsive Design */
   @media (max-width: 768px) {
-    .floor ul {
+    .pd--floor ul {
       flex-direction: column; /* Stack items vertically */
       align-items: center;
       gap: 15px;
     }
   
-    .floor ul li {
+    .pd--floor ul li {
       font-size: 16px; /* Slightly smaller font size for smaller screens */
     }
   }
   
   @media (max-width: 480px) {
-    .floor {
+    .pd--floor {
       padding: 15px; /* Adjust padding for very small screens */
     }
   
-    .floor ul li {
+    .pd--floor ul li {
       font-size: 14px; /* Further reduce font size for small screens */
     }
   }
@@ -264,7 +264,7 @@
   
   
   
-  .contentcontainer {
+  .pd--contentcontainer {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -276,8 +276,8 @@
   }
   
   /* Left and Right Divs with Equal Size */
-  .left-div,
-  .right-divs {
+  .pd--left-div,
+  .pd--right-divs {
     flex: 1 1 48%; /* Equal flex-basis, maintaining spacing */
     min-width: 300px;
     /* background-color: #ffffff; */
@@ -287,7 +287,7 @@
     height: auto; /* Let the content determine the height */
   }
   
-  .title h3 {
+  .pd--title h3 {
     font-size: 24px;
     margin-bottom: 10px;
     color: #2a8b8e;
@@ -296,51 +296,51 @@
     text-align: center;
   }
   
-  p {
+  .pd--p1 {
     font-size: 16px;
     margin-bottom: 8px;
     padding: 10px;
     margin-top: 10px;
   }
   
-  p:hover {
+  .pd--p1:hover {
     background-color: #f0f0f0; /* Change this to your desired background color */
   }
   
-  strong {
+  .pd--strong {
     font-weight: bold;
     color: #555;
   }
   
-  h3 {
+  .pd--h3 {
     font-size: 20px;
     color: #333;
     margin-top: 20px;
   }
   
   /* Right Containers */
-  .right-divs {
+  .pd--right-divs {
     flex: 0 0 35%; /* Takes 35% of the space */
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
   
-  .top-right,
-  .bottom-right {
+  .pd--top-right,
+  .pd--bottom-right {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .top-right .title,
-  .bottom-right .title {
+  .pd--top-right .title,
+  .pd--bottom-right .title {
     margin-bottom: 15px;
   }
   
-  .top-right .title h3,
-  .bottom-right .title h3 {
+  .pd--top-right .title h3,
+  .pd--bottom-right .title h3 {
     font-size: 20px;
     color: #2a8b8e;
     border-bottom: 2px solid #2a8b8e;
@@ -349,16 +349,16 @@
   
   /* Responsiveness */
   @media (max-width: 768px) {
-    .contentcontainer {
+    .pd--contentcontainer {
       flex-direction: column;
       align-items: center;
     }
   
-    .left-div {
+    .pd--left-div {
       width: 100%;
     }
   
-    .right-divs {
+    .pd--right-divs {
       width: 100%;
       gap: 15px;
     }

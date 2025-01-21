@@ -22,7 +22,7 @@ export const App = () => {
       bloodPressure: { systolic: 120, diastolic: 80, unit: "mmHg" },
       heartRate: { value: 72, unit: "bpm" },
       oxygenSaturation: { value: 98, unit: "%" },
-    },
+    }
   };
 
   const nextAppointment = {
