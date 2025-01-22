@@ -1,0 +1,101 @@
+.profile--body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+}
+.profile-card {
+  background-color: #6ffac3;
+  border-radius: 5%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  /* height: fit-content; */
+  padding : 2% 5% 2% 5%;
+}
+
+.profilephoto{
+  display: flex;
+  justify-content:space-around;
+  background-size: cover;
+  height: 4vw;
+  width: 4vw;
+  border-radius: 50%;
+}
+.profile-header {
+  text-align: left;
+  margin-bottom: 5%;
+}
+.profile-header h1 {
+  font-size: 24px;
+  margin: 0;
+  color: #333;
+}
+.profile-header .email {
+  font-size: 14px;
+  color: #666;
+  margin: 2% 0% 0%;
+}
+.profile-details {
+  margin-bottom: 5%;
+}
+.detail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.detail .label {
+  color: #100101;
+  font-weight: bold;
+  line-height: 1.5rem;
+}
+.detail .value {
+  color: #333;
+}
+.detail .value a {
+  color: #0073e6;
+  text-decoration: none;
+}
+.detail .value a:hover {
+  text-decoration: underline;
+}
+.profile-footer {
+  border-top: 1px solid #1f0101;
+  border-width: 2px;
+  padding-top: 8%;
+  font-size: 14px;
+}
+.profile-footer .tag {
+  background-color: #e0e7ff;
+  text-align: center;
+  color: #1e40af;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-bottom: px;
+  font-weight: 500;
+  font-style: none;
+}
+.profile-footer .category {
+  color: #666;
+  font-weight: 700;
+  margin-bottom: 2%;
+}
+.profile-footer .assignee {
+  color: #333;
+  margin-bottom: 2%;
+}
+.profile-footer .handle {
+  color: #666;
+}
+.profile-footer .date {
+  color: #666;
+  font-size: 12px;
+}
+.flex{
+  display: inline-flex;
+  align-items: center
+}
