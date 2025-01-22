@@ -7,7 +7,7 @@ const ProfileCard = () => {
   return (
     <div className="profile-card">
       <div className="profile-header">
-        <div className="profilephoto"></div>
+        <img className="profilephoto" src="./profilephoto.jpg" alt="Profile" />
         <div className="userName">
           <h1>Yashodhan Zingade</h1>
         </div>
@@ -64,9 +64,11 @@ const ProfileCard = () => {
         </div>
       </div>
       <div className="profile-footer">
-        <p className="tag">
-          Emergency Call <FontAwesomeIcon icon={faPhone} />
-        </p>
+        <a href="#" style={{ textDecoration: "none" }}>
+          <p className="tag">
+            Emergency Call <FontAwesomeIcon icon={faPhone} />
+          </p>
+        </a>
         <p className="category">Recent Prescriptions : </p>
         <p className="assignee">
           Samet Özkale <br />
