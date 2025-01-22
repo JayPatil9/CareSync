@@ -46,6 +46,7 @@
     margin: 15px 0 10px;
 }
 
+.login--container input[type="submit"],
 .login--container button{
     background-color: #512da8;
     color: #fff;
@@ -86,7 +87,7 @@
     outline: none;
 }
 
-.form-container{
+.form-container {
     position: absolute;
     top: 0;
     height: 100%;

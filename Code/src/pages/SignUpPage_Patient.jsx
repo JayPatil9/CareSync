@@ -1,5 +1,6 @@
 import React from 'react'
-import './SignUpPage2.css';
+import '../stylesheets/SignUpPage_Patient.css';
+import IMG from '../assets/bg_photo_3.jpg';
 
 
 const SignUpPage2 = () => {
@@ -16,7 +17,7 @@ const SignUpPage2 = () => {
     justifyContent: 'center',
     alignItems: 'center',
     minHeight: '100vh',
-    background: `url('./src/assets/bg_photo_3.jpg') no-repeat center/cover`,
+    background: `url(${IMG}) no-repeat center/cover`,
     // backgroundSize: Cover,
     // backgroundPosition: center,
   }} className= 'meow-body'>
@@ -50,10 +51,10 @@ const SignUpPage2 = () => {
 
 <div className="form-box register">
             
-            <form action="">    
+            <form className="sign-patient-form" action="">   
                 <h1>Registration</h1>
                 <div className="input-box">
-                    <input type="text" 
+                    <input type="text"
                     placeholder='Name' required />
                 </div>
                 <div className="input-box">

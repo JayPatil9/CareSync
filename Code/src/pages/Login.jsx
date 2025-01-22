@@ -20,25 +20,29 @@ export default function Login() {
         navigate("/signup-patient")
     }
 
+    const gotoDashboard = () => {
+        navigate("/dashboard")
+    }
+
     return (
         <div className="login--body">
         <div className={"login--container "+ toggle} id="container">
         <div className="form-container sign-up">
             <form>
                 <h1>Sign In</h1>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input type="email" placeholder="Email" required/>
+                <input type="password" placeholder="Password" required/>
                 <a href="#">Forget Your Password?</a>
-                <button>Sign In</button>
+                <input type="submit" className="login--button" placeholder="Password" />
             </form>
         </div>
         <div className="form-container sign-in">
             <form>
                 <h1>Sign In</h1>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input id="pemail" type="email" placeholder="Email" required/>
+                <input id="ppassword" type="password" placeholder="Password" required/>
                 <a href="#">Forget Your Password?</a>
-                <button>Sign In</button>
+                <input type="submit" className="login--button" onClick={gotoDashboard} placeholder="Password" />
             </form>
         </div>
         <div className="toggle-container">

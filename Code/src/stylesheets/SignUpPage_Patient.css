@@ -31,13 +31,13 @@ box-sizing: border-box;
 
 } */
 
-form h1 {
+.sign-patient-form h1 {
     font-size: 36px;
     text-align: center;
     margin: 40px;
 }
 
-form .input-box {
+.sign-patient-form .input-box {
     position: relative;
     width: calc(100% - 40px);
     height: 50px;
@@ -61,7 +61,7 @@ form .input-box {
     color: #ffffff;
 }
 
-form .remember-forgot {
+.sign-patient-form .remember-forgot {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -84,7 +84,7 @@ margin-right: 4px;
     text-decoration: underline;
 }
 
-form button{
+.sign-patient-form button{
     width: 100%;
     height: 45px;
     background: #ffffff;
@@ -98,7 +98,7 @@ form button{
     font-weight: 700;
 }
 
-form .register-link{
+.sign-patient-form .register-link{
     font-size: 14.5px;
     text-align: center;
     margin: 20px 0 15px;
