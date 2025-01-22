@@ -1,10 +1,11 @@
 import React from "react";
-import "./ProfileCard.css"; // Import the CSS file
+import "../stylesheets/patientprofile.css"; // Import the CSS file
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 
 const ProfileCard = () => {
   return (
+    <div className="profile--body">
     <div className="profile-card">
       <div className="profile-header">
         <img className="profilephoto" src="./profilephoto.jpg" alt="Profile" />
@@ -88,6 +89,7 @@ const ProfileCard = () => {
           </object>
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -1,18 +1,18 @@
-body {
+.profile--body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   margin: 0;
 }
 .profile-card {
   background-color: #6ffac3;
   border-radius: 5%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 23%;
-  height: fit-content;
+  width: 30%;
+  /* height: fit-content; */
   padding : 2% 5% 2% 5%;
 }
 
