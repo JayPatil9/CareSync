@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import SP from './pages/SignUpPage_Patient'
 // import SD from './pages/SignupDoctor'
 import Dashboard from './pages/PDashboard'
+import PProfile from './pages/patientprofile'
 import './App.css'
 
 
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/signup-patient" element={<SP />} />
         {/* <Route exact path="/signup-doctor" element={<SD />} /> */}
         <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/patient-profile" element={<PProfile />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </BrowserRouter>

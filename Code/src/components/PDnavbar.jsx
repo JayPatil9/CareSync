@@ -1,6 +1,6 @@
 import React from "react";
 
-export const NavBar = ({ menuItems, logoSrc, profileSrc }) => {
+export const NavBar = ({ link, menuItems, logoSrc, profileSrc }) => {
   return (
     <section className="pd--sec">
       <div className="pd--logo">
@@ -14,7 +14,7 @@ export const NavBar = ({ menuItems, logoSrc, profileSrc }) => {
         ))}
       </ul>
       <div className="pd--profile">
-        <img src={profileSrc} alt="Profile" />
+        <img onClick={link} src={profileSrc} alt="Profile" />
       </div>
     </section>
   );

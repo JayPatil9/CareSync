@@ -4,6 +4,7 @@ import { Floor } from "../components/PDfloor";
 import { initialize,getAppointments, getVitals, getMyDoctors } from "../backend/backend";
 import { useEffect, useState } from "react";
 import "../stylesheets/PD.css";
+import { useNavigate } from "react-router-dom";
 
 export const App = () => {
 
@@ -13,6 +14,11 @@ export const App = () => {
   const [appointments, setAppointments] = useState(null);
   const [vitals, setVitals] = useState(null);
   const [Doctors, setDoctors] = useState(null);
+
+    const navigate = useNavigate()
+    const gotoProfile = () => {
+        navigate("/patient-profile")
+    }
 
 
   useEffect(() => {
@@ -73,7 +79,7 @@ export const App = () => {
   return (
     <>
     <div className=".pd--body">
-      <NavBar menuItems={menuItems} logoSrc={logoSrc} profileSrc={profileSrc} />
+      <NavBar link={gotoProfile} menuItems={menuItems} logoSrc={logoSrc} profileSrc={profileSrc} />
       <Content
         patientUpdate={vitals?vitals:patientUpdate}
         nextAppointment={appointments?appointments:nextAppointment}
