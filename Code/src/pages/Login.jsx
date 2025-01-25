@@ -24,6 +24,10 @@ export default function Login() {
         navigate("/dashboard")
     }
 
+    const gotoDLogbook = () => {
+        navigate("/doctor-logbook")
+    }
+
     return (
         <div className="login--body">
         <div className={"login--container "+ toggle} id="container">
@@ -33,7 +37,7 @@ export default function Login() {
                 <input type="email" placeholder="Email" required/>
                 <input type="password" placeholder="Password" required/>
                 <a href="#">Forget Your Password?</a>
-                <input type="submit" className="login--button" placeholder="Password" />
+                <input type="submit" className="login--button" onClick={gotoDLogbook} placeholder="Password" />
             </form>
         </div>
         <div className="form-container sign-in">

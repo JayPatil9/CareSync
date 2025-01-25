@@ -32,14 +32,36 @@ const initialize = async (setWeb3,setContract,setAddress) => {
     }
   };
 
+const getContract = async () => {
+    try {
+        const web3 = new Web3(window.ethereum);
+        const contract = new web3.eth.Contract(contractABI, contractAddress);
+        return contract;
+    } catch (error) {
+        console.error('Error:', error);
+        alert("There was an error!");
+    }
+};
 
-const addPatient = async (web3,address,contract,ipfsHash) => {
+const getAddress = async () => {
+    try {
+        const web3 = new Web3(window.ethereum);
+        const accounts = await web3.eth.getAccounts();
+        return accounts[0];
+    } catch (error) {
+        console.error('Error:', error);
+        alert("There was an error!");
+    }
+}
+
+
+const setPatient = async (web3,address,contract,ipfsHash) => {
     try {
 
         const txObject = {
           from: address,
           to: contractAddress,
-          data: contract.methods.addPatient(ipfsHash,address).encodeABI(),        
+          data: contract.methods.setPatient(address,ipfsHash).encodeABI(),     
           gas: 2000000,
         };
         const txHash = await web3.eth.sendTransaction(txObject);
@@ -51,10 +73,10 @@ const addPatient = async (web3,address,contract,ipfsHash) => {
       }
 };
 
-const getPatient = async (address,contract) => {
+const getPatient = async (address,contract,setPatient) => {
     try {
         const patient = await contract.methods.getPatient(address).call();
-        return getJson(patient);
+        return getJson(patient,setPatient);
     } catch (error) {
         console.error('Error:', error);
         alert("There was an error!");
@@ -119,4 +141,4 @@ const upload_image = async (pinata,imgFile) => {
   }
 };
 
-export {initialize,addPatient,getPatient,upload_image,getVitals,getAppointments,getMyDoctors};
+export {initialize,setPatient,getPatient,upload_image,getVitals,getAppointments,getMyDoctors,getContract,getAddress};

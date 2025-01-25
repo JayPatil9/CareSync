@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, Plus, Grid3X3 } from 'lucide-react';
-import './Doctor_Logbook.css';
+import '../stylesheets/Doctor_Logbook.css';
 import IMG from '../assets/caresync_logo.png';
 import { FaCircleUser } from "react-icons/fa6";
 import { CgWebsite } from "react-icons/cg";

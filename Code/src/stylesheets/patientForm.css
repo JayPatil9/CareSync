@@ -1,0 +1,86 @@
+.form--h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  .form--div {
+    width: 90%;
+    max-width: 500px;
+    /* padding: 30px; */
+    margin: 5% auto;
+    background: linear-gradient(to right, #ffffff, #f0f4f8);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .patient--form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .patient--form label {
+    font-size: 14px;
+    color: #444;
+    font-weight: 600;
+  }
+  
+  .patient--form input,
+  .patient--form select,
+  .patient--form textarea {
+    padding: 12px;
+    border: 1px solid #d1d9e6;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #555;
+    background-color: #fdfdfd;
+    transition: border 0.3s ease;
+    /* width: 100%; */
+  }
+  
+  .patient--form input:focus,
+  .patient--form select:focus,
+  .patient--form textarea:focus {
+    outline: none;
+    border: 1px solid #0073e6;
+    box-shadow: 0 0 5px rgba(0, 115, 230, 0.4);
+  }
+  
+  .patient--form button[type="submit"] {
+    padding: 12px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #0073e6;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .patient--form button[type="submit"]:hover {
+    background-color: #005bb5;
+    transform: translateY(-2px);
+  }
+  
+  .patient--form button[type="submit"]:active {
+    transform: translateY(0);
+  }
+  
+  .patient--form textarea {
+    resize: none;
+    /* width: 100%; */
+  }
+  
+  @media (max-width: 600px) {
+    .form--div {
+      padding: 15px;
+    }
+  
+    .patient--form button[type="submit"] {
+      width: 100%;
+    }
+  }
+  

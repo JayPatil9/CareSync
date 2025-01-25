@@ -1,18 +1,63 @@
-import React from "react";
-import "../stylesheets/patientprofile.css"; // Import the CSS file
+import { useState,useEffect } from "react";
+import { getAddress,getContract,getPatient,initialize } from "../backend/backend";
+import { useNavigate } from "react-router-dom";
+import "../stylesheets/patientprofile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import IMG from "../assets/caresync_logo.png";
+
+
+const gateway = import.meta.env.VITE_GATEWAY;
 
 const ProfileCard = () => {
+
+  const navigate = useNavigate()
+  const gotoUpdate = () => {
+      navigate("/patient-form")
+  }
+
+  const [patient, setPatient] = useState({});
+  const [address, setAddress] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [web3, setWeb3] = useState(null);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        await initialize(setWeb3,setContract,setAddress);
+      } catch (error) {
+        console.error('Error:', error);
+        alert("There was an error!");
+      }
+    };
+    loadData();
+  }, []);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        if(contract) {
+          await getPatient(address,contract,setPatient);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert("There was an error!");
+      }
+    };
+    loadData();
+    // console.log("https://"+gateway+"/ipfs/"+patient.image);
+  }, [contract]);
+
+
   return (
     <div className="profile--body">
     <div className="profile-card">
       <div className="profile-header">
-        <img className="profilephoto" src="./profilephoto.jpg" alt="Profile" />
+        <img className="profilephoto" src={patient.image?"https://"+gateway+"/ipfs/"+patient.image:IMG} alt="Profile" />
         <div className="userName">
-          <h1>Yashodhan Zingade</h1>
+          <h1>{patient.name?patient.name:"N/A"}</h1>
         </div>
-        <p className="email">yZ@caresync.com</p>
+        <p className="email">{patient.email?patient.email:"N/A"}</p>
       </div>
       <div className="profile-details">
         <div className="detail">
@@ -20,26 +65,26 @@ const ProfileCard = () => {
           <span className="value">231030069</span>
         </div>
         <div className="detail">
-          <span className="label">Website: </span>
+          <span className="label">Age : </span>
           <span className="value">
-            <a href="https://figma.com">caresync</a>
+          {patient.age?patient.age:"N/A"}
           </span>
         </div>
         <div className="detail">
           <span className="label">Gender : </span>
-          <span className="value">Male</span>
+          <span className="value">{patient.gender?patient.gender:"N/A"}</span>
         </div>
         <div className="detail">
           <span className="label">Height : </span>
-          <span className="value">170cm</span>
+          <span className="value">{patient.height?patient.height+"cm":"N/A"}</span>
         </div>
         <div className="detail">
           <span className="label">Weight : </span>
-          <span className="value">85kg | 187.39lbs</span>
+          <span className="value">{patient.weight?patient.weight+"kg":"N/A"}</span>
         </div>
         <div className="detail">
           <span className="label">Date Of Birth : </span>
-          <span className="value">9th October 2005</span>
+          <span className="value">{patient.dob?patient.dob:"N/A"}</span>
         </div>
         <div className="detail">
           <span className="label">Type:</span>
@@ -47,21 +92,21 @@ const ProfileCard = () => {
         </div>
         <div className="detail">
           <span className="label">Registry Date:</span>
-          <span className="value">April 16, 2022</span>
+          <span className="value">{patient.date?patient.date:"N/A"}</span>
         </div>
         <div className="detail">
           <span className="label">Blood Group : </span>
-          <span className="value">B+</span>
+          <span className="value">{patient.bloodGroup?patient.bloodGroup:"N/A"}</span>
         </div>
         <div className="detail">
           <span className="label">Address</span>
           <span className="value">
-            Bhavani Peth,<br /> Solapur
+          {patient.address?patient.address:"N/A"}
           </span>
         </div>
         <div className="detail">
           <span className="label">Contact Number</span>
-          <span className="value">8149414692</span>
+          <span className="value">{patient.phone?patient.phone:"N/A"}</span>
         </div>
       </div>
       <div className="profile-footer">
@@ -70,7 +115,8 @@ const ProfileCard = () => {
             Emergency Call <FontAwesomeIcon icon={faPhone} />
           </p>
         </a>
-        <p className="category">Recent Prescriptions : </p>
+        <p className="profile--button" onClick={gotoUpdate}>Update</p>
+        {/* <p className="category">Recent Prescriptions : </p>
         <p className="assignee">
           Samet Özkale <br />
           <span className="handle">Email: sametO@gmail.com</span>
@@ -87,8 +133,9 @@ const ProfileCard = () => {
               </div>
             </div>
           </object>
-        </div>
+        </div> */}
       </div>
+      {/* <button className="profile--button">Update</button> */}
     </div>
     </div>
   );

@@ -44,8 +44,11 @@ contract CareSync {
 
     }
 
+     
+
     mapping (address => Doctor) public doctors;
     mapping (address => Patient) public patients;
+
 
 
 
@@ -60,6 +63,10 @@ contract CareSync {
         });
 
         patients[_patientId] = newPatient;
+    }
+
+    function setPatient(address _patientID, string memory _jsonHash) public {
+        patients[_patientID].jsonHash = _jsonHash;
     }
 
     function getPatient(address _id) public view returns (string memory){
@@ -80,6 +87,10 @@ contract CareSync {
 
     function getNextAppointment(address _patientID) public view returns (string memory ){
         return patients[_patientID].next_appointment;
+    }
+
+    function getPatientDoctors(address _patientID) public view returns (string[] memory ) {
+        return patients[_patientID].doctors;
     }
         
     function addDoctor(string memory _jsonHash, address _doctorId) public {
