@@ -1,13 +1,12 @@
 import { useState,useEffect } from "react";
-import { getAddress,getContract,getPatient,initialize } from "../backend/backend";
+import 'react';
+import { getPatient,initialize,gateway } from "../backend/backend";
 import { useNavigate } from "react-router-dom";
 import "../stylesheets/patientprofile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import IMG from "../assets/caresync_logo.png";
 
-
-const gateway = import.meta.env.VITE_GATEWAY;
 
 const ProfileCard = () => {
 
@@ -55,7 +54,7 @@ const ProfileCard = () => {
       <div className="profile-header">
         <img className="profilephoto" src={patient.image?"https://"+gateway+"/ipfs/"+patient.image:IMG} alt="Profile" />
         <div className="userName">
-          <h1>{patient.name?patient.name:"N/A"}</h1>
+          <h1 className="profile--h1">{patient.name?patient.name:"N/A"}</h1>
         </div>
         <p className="email">{patient.email?patient.email:"N/A"}</p>
       </div>

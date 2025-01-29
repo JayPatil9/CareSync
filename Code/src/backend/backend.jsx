@@ -1,10 +1,11 @@
 import Web3 from 'web3';
 import { contractABI } from './data';
 
-const contractAddress = import.meta.env.VITE_CONTRACT_ADDRESS;
-const gateway = import.meta.env.VITE_GATEWAY;
+export const contractAddress = import.meta.env.VITE_CONTRACT_ADDRESS;
+export const gateway = import.meta.env.VITE_GATEWAY;
+export const JWT = import.meta.env.VITE_JWT;
 
-const initialize = async (setWeb3,setContract,setAddress) => {
+export const initialize = async (setWeb3,setContract,setAddress) => {
     // Check if web3 is injected by the browser (Mist/MetaMask)
     if (typeof window.ethereum !== 'undefined') {
       try {
@@ -30,9 +31,9 @@ const initialize = async (setWeb3,setContract,setAddress) => {
     } else {
       alert('Please install MetaMask!');
     }
-  };
+  }
 
-const getContract = async () => {
+export const getContract = async () => {
     try {
         const web3 = new Web3(window.ethereum);
         const contract = new web3.eth.Contract(contractABI, contractAddress);
@@ -41,9 +42,9 @@ const getContract = async () => {
         console.error('Error:', error);
         alert("There was an error!");
     }
-};
+}
 
-const getAddress = async () => {
+export const getAddress = async () => {
     try {
         const web3 = new Web3(window.ethereum);
         const accounts = await web3.eth.getAccounts();
@@ -55,7 +56,7 @@ const getAddress = async () => {
 }
 
 
-const setPatient = async (web3,address,contract,ipfsHash) => {
+export const setPatient = async (web3,address,contract,ipfsHash) => {
     try {
 
         const txObject = {
@@ -66,14 +67,33 @@ const setPatient = async (web3,address,contract,ipfsHash) => {
         };
         const txHash = await web3.eth.sendTransaction(txObject);
         // console.log(txHash);
-        
+        return true;
       } catch (error) {
         console.error('Error:', error);
         alert("There was an error!");
+        return false;
       }
-};
+}
 
-const getPatient = async (address,contract,setPatient) => {
+export const setDoctor = async (web3,address,contract,ipfsHash) => {
+  try {
+
+      const txObject = {
+        from: address,
+        to: contractAddress,
+        data: contract.methods.addDoctor(ipfsHash,address).encodeABI(),    
+        gas: 2000000,
+      };
+      const txHash = await web3.eth.sendTransaction(txObject);
+      return true;
+    } catch (error) {
+      console.error('Error:', error);
+      alert("There was an error!");
+      return false;
+    }
+}
+
+export const getPatient = async (address,contract,setPatient) => {
     try {
         const patient = await contract.methods.getPatient(address).call();
         return getJson(patient,setPatient);
@@ -84,7 +104,18 @@ const getPatient = async (address,contract,setPatient) => {
     }
 }
 
-const getVitals = async (address,contract,setVitals) => {
+export const getDoctor = async (address,contract,setDoctor) => {
+  try {
+      const doctor = await contract.methods.getDoctor(address).call();
+      return getJson(doctor,setDoctor);
+  } catch (error) {
+      console.error('Error:', error);
+      alert("There was an error!");
+      return "error";
+  }
+}
+
+export const getVitals = async (address,contract,setVitals) => {
   try {
       const vitals = await contract.methods.getVitals(address).call();
       return getJson(vitals,setVitals);
@@ -95,7 +126,7 @@ const getVitals = async (address,contract,setVitals) => {
   }
 }
 
-const getAppointments = async (address,contract,setAppointments) => {
+export const getAppointments = async (address,contract,setAppointments) => {
   try {
       const appointments = await contract.methods.getNextAppointment(address).call();
       // console.log(appointments);
@@ -107,7 +138,7 @@ const getAppointments = async (address,contract,setAppointments) => {
   }
 }
 
-const getMyDoctors = async (address,contract,setMyDoctors) => {
+export const getMyDoctors = async (address,contract,setMyDoctors) => {
   try {
       const doctors = await contract.methods.getPatientDoctors(address).call();
       setMyDoctors(doctors);
@@ -118,20 +149,22 @@ const getMyDoctors = async (address,contract,setMyDoctors) => {
   }
 }
 
-const getJson = async (ipfsHash,setJSON) => {
+export const getJson = async (ipfsHash,setJSON) => {
   try {
     const response = await fetch(`https://${gateway}/ipfs/${ipfsHash}`);
+    if(response.status!==200) {
+      return {};
+    }
     const data = await response.json();
-    // console.log(data.date);
     setJSON(data);
     return data;
   } catch (error) {
     console.error('Error:', error);
-    return "error";
+    return {};
   }
 }
 
-const upload_image = async (pinata,imgFile) => {
+export const upload_image = async (pinata,imgFile) => {
   try {
       const response = await pinata.upload.file(imgFile);
       return response.IpfsHash;
@@ -139,6 +172,4 @@ const upload_image = async (pinata,imgFile) => {
       console.error("Error uploading the image:", error);
       return "Error";
   }
-};
-
-export {initialize,setPatient,getPatient,upload_image,getVitals,getAppointments,getMyDoctors,getContract,getAddress};
+}

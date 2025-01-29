@@ -2,30 +2,30 @@ import React from 'react'
 import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PinataSDK } from 'pinata-web3';
-import { gateway, initialize,setPatient,JWT,getPatient } from '../backend/backend';
+import { gateway, initialize,setDoctor,JWT,getDoctor } from '../backend/backend';
 import '../stylesheets/SignUpPage_Patient.css';
 import IMG from '../assets/bg_photo_3.jpg';
 
 
-const PatientSignUpPage = () => {
+const DoctorSignUpPage = () => {
 
     const [web3, setWeb3] = useState(null);
     const [contract, setContract] = useState(null);
     const [address, setAddress] = useState(null);
 
-    const [patient, setPatient_] = useState({});
+    const [doctor, setDoctor_] = useState({});
     const [name, setName] = useState(null);
     const [email, setEmail] = useState(null);
     const [phone, setPhone] = useState(null);
-    const [medicalIssue, setMedicalIssue] = useState(null);
+    const [specialization, setSpecialization] = useState(null);
     const [password, setPassword] = useState(null);
 
     const navigate = useNavigate()
     const gotoLogin = () => {   
         navigate("/login")
     }
-    const gotoDashboard = () => {
-        navigate("/patient-dashboard")
+    const gotoLogbook = () => {
+        navigate("/doctor-logbook")
     }
 
     const pinata = new PinataSDK({
@@ -50,7 +50,7 @@ const PatientSignUpPage = () => {
         const loadData = async () => {
         try {
             if(contract) {
-                await getPatient(address,contract,setPatient_);
+                await getDoctor(address,contract,setDoctor_);
             }
         } catch (error) {
             console.error('Error:', error);
@@ -63,25 +63,25 @@ const PatientSignUpPage = () => {
     const interact = async (e) => {
         e.preventDefault();
 
-        if(patient.name) {
-            alert("Patient already exists!");
+        if(doctor.name) {
+            alert("Doctor already exists!");
             gotoLogin();
         }
 
-        if(name && email && phone && medicalIssue && password) {
+        else if(name && email && phone && specialization && password) {
             try {    
                 await initialize(setWeb3,setContract,setAddress);
                 const patient = {
                     name: name,
                     email: email,
                     phone: phone,
-                    medicalIssue: medicalIssue,
+                    specialization: specialization,
                     password: password
                 };
-                const ipfsHash = await pinata.upload.json(patient);
-                const flag = await setPatient(web3,address,contract,ipfsHash.IpfsHash);
+                const ipfsHash = await pinata.upload.json(doctor);
+                const flag = await setDoctor(web3,address,contract,ipfsHash.IpfsHash);
                 if(flag) {
-                    gotoDashboard();
+                    gotoLogbook();
                 }
             } catch(error) {
                 console.error('Error:', error);
@@ -127,8 +127,8 @@ const PatientSignUpPage = () => {
                     </div>
                     <div className="input-box">
                         <input type="text" 
-                        placeholder='Medical Issue'
-                        onChange={(e) => setMedicalIssue(e.target.value)}
+                        placeholder='Specialization'
+                        onChange={(e) => setSpecialization(e.target.value)}
                         required />
                     </div>
                     <div className="input-box">
@@ -158,4 +158,4 @@ const PatientSignUpPage = () => {
     );
 };
 
-export default PatientSignUpPage
+export default DoctorSignUpPage

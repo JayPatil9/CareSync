@@ -25,26 +25,24 @@
 }
 
 .profilephoto{
-  display: flex;
-  justify-content:space-around;
-  background-size: cover;
-  height: 4vw;
-  width: 4vw;
+  height: 6vw;
+  width: 6vw;
   border-radius: 50%;
+  align-items: center;
 }
 .profile-header {
-  text-align: left;
+  text-align: center;
   margin-bottom: 5%;
 }
-.profile-header h1 {
-  font-size: 24px;
+.profile--h1 {
+  font-size: 30px;
   margin: 0;
   color: #333;
 }
 .profile-header .email {
-  font-size: 14px;
+  font-size: 20px;
   color: #666;
-  margin: 2% 0% 0%;
+  margin: 1% 0% 0%;
 }
 .profile-details {
   margin-bottom: 5%;
@@ -53,7 +51,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 22px;
 }
 .detail .label {
   color: #100101;

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Menu, Plus, Grid3X3 } from 'lucide-react';
+import { useState,useEffect } from "react";
+import { initialize,getDoctor,gateway } from "../backend/backend";
 import '../stylesheets/Doctor_Logbook.css';
 import IMG from '../assets/caresync_logo.png';
 import { FaCircleUser } from "react-icons/fa6";
@@ -7,6 +9,41 @@ import { CgWebsite } from "react-icons/cg";
 
 
 const ClassroomSquares = ({ squares = [{name:"Kartik Sharma",treatment:"Fever",bgColor:"#b6fff4",profilePic:IMG},{name:"Mr.Mehta",treatment:"Fever",bgColor:"#000000",profilePic:IMG}] }) => {
+
+  const [doctor, setDoctor] = useState({});
+  const [address, setAddress] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [web3, setWeb3] = useState(null);
+
+  useEffect(() => {
+      const loadData = async () => {
+      try {
+          await initialize(setWeb3,setContract,setAddress);
+      } catch (error) {
+          console.error('Error:', error);
+          alert("There was an error!");
+      }
+      };
+      loadData();
+  }, []);
+
+  useEffect(() => {
+      const loadData = async () => {
+      try {
+          if(contract) {
+          await getDoctor(address,contract,setDoctor);
+          }
+      } catch (error) {
+          console.error('Error:', error);
+          alert("There was an error!");
+      }
+      };
+      loadData();
+  }, [contract]);
+
+
+
+
   return (
     <div className="classroom-container">
       {/* Top Navigation Bar */}
@@ -20,7 +57,9 @@ const ClassroomSquares = ({ squares = [{name:"Kartik Sharma",treatment:"Fever",b
           {/* <Plus className="icon" /> */}
           <span className="doc_nb_contents_1">Calendar</span>
           <Grid3X3 className="icon" />
-          <div className="profile-pic"></div>
+          <div className="profile-pic">
+            <img className='profile-pic' src={doctor.image?"https://"+gateway+"/ipfs/"+doctor.image:IMG} alt="Profile" />
+          </div>
         </div>
       </nav>
 
