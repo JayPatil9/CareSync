@@ -1,10 +1,11 @@
 import React from "react";
+import IMG from "../assets/caresync_logo.png";
 
 export const NavBar = ({ link, menuItems, logoSrc, profileSrc }) => {
   return (
     <section className="pd--sec">
       <div className="pd--logo">
-        <img src={logoSrc} alt="Logo" />
+        <img src={IMG} alt="Logo" />
       </div>
       <ul className="pd--container">
         {menuItems.map((item, index) => (

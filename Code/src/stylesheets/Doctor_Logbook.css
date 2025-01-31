@@ -1,332 +1,362 @@
 .logbook-container {
-    min-height: 100vh;
-    background-color: #f8f9fa;
+  min-height: 100vh;
+  background: linear-gradient(
+    to right,
+    #e2e2e2,
+    #2a8b8e
+  ); /* Gradient background from the login theme */
 }
 
 .navbar {
-    background-color: white;
-    padding: 0.5rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 10;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .navbar-left,
 .navbar-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 10px;
 }
 
 .icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    color: #5f6368;
-    cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #5f6368;
+  cursor: pointer;
 }
 
 .logo {
-    height: 4.5rem;
+  height: 4.5rem;
 }
 
 .title {
-    font-size: 1.25rem;
-    color: #5f6368;
-    font-weight: 500;
+  font-size: 1.25rem;
+  color: #5f6368;
+  font-weight: 500;
 }
 
-.doc_nb_contents_1{
-    font-size: 1rem;
-        color: #5f6368;
-        font-weight: 350;
+.doc_nb_contents_1 {
+  font-size: 1rem;
+  color: #5f6368;
+  font-weight: 350;
 }
 
 .profile-pic {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    background-color: #e0e0e0;
-    cursor: pointer;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  cursor: pointer;
 }
 
 .main-content {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem;
 }
 
 .squares-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
 }
 
 .square {
-    aspect-ratio: 1;
-    background: white;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s, box-shadow 0.2s;
+  aspect-ratio: 1;
+  background: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .square:hover {
-    transform: translateY(-3.5px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3.5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .square-header {
-    flex: 1;
-    padding: 1rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  flex: 1;
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .square-text {
-    color: white;
-    z-index: 1;
-    position: relative;
+  color: white;
+  z-index: 1;
+  position: relative;
 }
 
 .square-title {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    max-height: 2em;
-    line-height: 1.2;
-    max-width: 80%;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-height: 2em;
+  line-height: 1.2;
+  max-width: 80%;
 }
 
 @supports not (-webkit-line-clamp: 2) {
-    .square-title {
-        position: relative;
-        max-height: 2.4em;
-        overflow: hidden;
-        padding-right: 1rem;
-    }
+  .square-title {
+    position: relative;
+    max-height: 2.4em;
+    overflow: hidden;
+    padding-right: 1rem;
+  }
 
-    .square-title::after {
-        content: '...';
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        background: inherit;
-    }
+  .square-title::after {
+    content: "...";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+  }
 }
 
 .treatment-text {
-    font-size: 1.25rem;
-    opacity: 0.8;
-    margin-top: auto;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 80%;
+  font-size: 1.25rem;
+  opacity: 0.8;
+  margin-top: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80%;
 }
 
 .profile-circle {
-    position: absolute;
-    right: 1rem;
-    top: 2.5rem;
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: #f0f0f0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  right: 1rem;
+  top: 2.5rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .profile-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .square-footer {
-    padding: 0.75rem;
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    background: white;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 0.75rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  background: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .icon-button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    opacity: 0.6;
-    transition: opacity 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
 }
 
 .icon-button:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .icon-button img {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 /* Responsive breakpoints */
 @media (min-width: 640px) {
-    .squares-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .squares-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (min-width: 768px) {
-    .squares-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+  .squares-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (min-width: 1024px) {
-    .squares-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
+  .squares-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* Adding some additional touch-friendly features for mobile */
 @media (max-width: 640px) {
-    .icon-button {
-        padding: 0.5rem;
-        margin: -0.5rem;
-    }
+  .icon-button {
+    padding: 0.5rem;
+    margin: -0.5rem;
+  }
 
-    .navbar {
-        padding: 0.75rem 1rem;
-    }
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
 
-    .squares-grid {
-        gap: 1rem;
-    }
+  .squares-grid {
+    gap: 1rem;
+  }
 }
 
 .add-button {
-    position: fixed;
-    right: 1rem;
-    bottom: 1rem;
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    background-color: white;
-    color: #007bff;
-    font-size: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: #086669; /* Same teal color from login theme */
+  color: #fff;
+  font-size: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
+.add-button:hover {
+  background-color: #2a8b8e; /* Lighter teal for hover effect */
+}
 
 .assign-body {
-    display: flex;
-    border: #000000 solid 2px;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.2);
-    
+  display: flex;
+  border: #000000 solid 2px;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .assign-card {
-    display: flex;
-    flex-direction: column;
-    height:50%;
-    width:60%;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 15px;
-    background-color: rgba(125, 125, 125, 0.05);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  background-color: rgba(125, 125, 125, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .assign-button {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: #007bff;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #086669; /* Same teal color from login theme */
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 .assign-button:hover {
-    background-color: #0056b3;
+  background-color: #2a8b8e; /* Lighter teal for hover effect */
 }
 
 .assign-button:active {
-    transform: translateY(1px);
+  transform: translateY(1px);
 }
 
 .assign-button:focus {
-    outline: none;
+  outline: none;
 }
 
 .assign-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15%;
-    width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 15%;
+  width: 75%;
 }
 
 .assign-form input {
-    padding: 0.5rem 1rem;
-    color: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 23px;
-    font-size: 1rem;
-    background-color: rgba(125, 125, 125, 0.05);
-    
+  padding: 0.5rem 1rem;
+  color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 23px;
+  font-size: 1rem;
+  background-color: rgba(125, 125, 125, 0.05);
 }
 
 .assign-form input[type="number"]::-webkit-inner-spin-button,
 .assign-form input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .assign-form input:focus {
-    outline: none;
-    border-color: #007bff;
+  outline: none;
+  border-color: #086669; /* Focus border with the teal color */
 }
 
-
 .assign-close {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    color: white;
-    cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: white;
+  cursor: pointer;
 }
 
 .assign-body h2 {
-    font-size: 1.5rem;
-    color:white;
-    font-weight: 500;
-    margin-bottom: 5px;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.profile-pic {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: #e0e0e0; /* Light grey background, adjust if needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.profile-pic:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.profile-pic svg {
+  color: #000000; /* Teal color for the icon */
+  font-size: 2rem; /* Adjust icon size as needed */
+}
+
+.profile-pic svg:hover {
+  color: #2a8b8e; /* Slightly lighter teal color on hover */
 }

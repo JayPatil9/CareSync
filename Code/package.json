@@ -11,18 +11,20 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.7.2",
+        "@fortawesome/free-solid-svg-icons": "^6.7.2",
+        "@fortawesome/react-fontawesome": "^0.2.2",
         "base64-arraybuffer": "^1.0.2",
         "dotenv": "^16.4.7",
         "dotenv-webpack": "^8.1.0",
+        "lucide-react": "^0.473.0",
         "pinata": "^1.10.1",
         "pinata-web3": "^0.5.4",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
-        "react-router-dom": "^6.3.0",
         "react-icons": "^4.3.1",
-        "lucide-react": "^0.473.0",
-        "@fortawesome/free-solid-svg-icons": "^6.7.2",
-        "@fortawesome/react-fontawesome": "^0.2.2",
+        "react-router-dom": "^6.3.0",
+        "react-scripts": "^5.0.1",
         "web3": "^4.7.0"
     },
     "devDependencies": {

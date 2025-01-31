@@ -1,161 +1,179 @@
-import React from 'react'
-import { useState,useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { PinataSDK } from 'pinata-web3';
-import { gateway, initialize,setDoctor,JWT,getDoctor } from '../backend/backend';
-import '../stylesheets/SignUpPage_Patient.css';
-import IMG from '../assets/bg_photo_3.jpg';
-
+import React from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { PinataSDK } from "pinata-web3";
+import {
+  gateway,
+  initialize,
+  setDoctor,
+  JWT,
+  getDoctor,
+} from "../backend/backend";
+import "../stylesheets/SignUpPage_Patient.css";
+import IMG from "../assets/signuppagebg.jpg";
 
 const DoctorSignUpPage = () => {
+  const [web3, setWeb3] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [address, setAddress] = useState(null);
 
-    const [web3, setWeb3] = useState(null);
-    const [contract, setContract] = useState(null);
-    const [address, setAddress] = useState(null);
+  const [doctor, setDoctor_] = useState({});
+  const [name, setName] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [phone, setPhone] = useState(null);
+  const [specialization, setSpecialization] = useState(null);
+  const [password, setPassword] = useState(null);
 
-    const [doctor, setDoctor_] = useState({});
-    const [name, setName] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [phone, setPhone] = useState(null);
-    const [specialization, setSpecialization] = useState(null);
-    const [password, setPassword] = useState(null);
+  const navigate = useNavigate();
+  const gotoLogin = () => {
+    navigate("/login");
+  };
+  const gotoLogbook = () => {
+    navigate("/doctor-logbook");
+  };
 
-    const navigate = useNavigate()
-    const gotoLogin = () => {   
-        navigate("/login")
-    }
-    const gotoLogbook = () => {
-        navigate("/doctor-logbook")
-    }
+  const pinata = new PinataSDK({
+    pinataJwt: JWT,
+    pinataGateway: gateway,
+  });
 
-    const pinata = new PinataSDK({
-        pinataJwt: JWT,
-        pinataGateway: gateway,
-    });
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        await initialize(setWeb3, setContract, setAddress);
+      } catch (error) {
+        console.error("Error:", error);
+        alert("There was an error!");
+      }
+    };
+    loadData();
+  }, []);
 
-
-    useEffect(() => {
-        const loadData = async () => {
-        try {
-            await initialize(setWeb3,setContract,setAddress);
-        } catch (error) {
-            console.error('Error:', error);
-            alert("There was an error!");
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        if (contract) {
+          await getDoctor(address, contract, setDoctor_);
         }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+    loadData();
+  }, [contract]);
+
+  const interact = async (e) => {
+    e.preventDefault();
+
+    if (doctor.name) {
+      alert("Doctor already exists!");
+      gotoLogin();
+    } else if (name && email && phone && specialization && password) {
+      try {
+        await initialize(setWeb3, setContract, setAddress);
+        const patient = {
+          name: name,
+          email: email,
+          phone: phone,
+          specialization: specialization,
+          password: password,
         };
-        loadData();
-    }, []);
-
-    useEffect(() => {
-        const loadData = async () => {
-        try {
-            if(contract) {
-                await getDoctor(address,contract,setDoctor_);
-            }
-        } catch (error) {
-            console.error('Error:', error);
+        const ipfsHash = await pinata.upload.json(doctor);
+        const flag = await setDoctor(
+          web3,
+          address,
+          contract,
+          ipfsHash.IpfsHash
+        );
+        if (flag) {
+          gotoLogbook();
         }
-        };
-        loadData();
-    }, [contract]);
-
-
-    const interact = async (e) => {
-        e.preventDefault();
-
-        if(doctor.name) {
-            alert("Doctor already exists!");
-            gotoLogin();
-        }
-
-        else if(name && email && phone && specialization && password) {
-            try {    
-                await initialize(setWeb3,setContract,setAddress);
-                const patient = {
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    specialization: specialization,
-                    password: password
-                };
-                const ipfsHash = await pinata.upload.json(doctor);
-                const flag = await setDoctor(web3,address,contract,ipfsHash.IpfsHash);
-                if(flag) {
-                    gotoLogbook();
-                }
-            } catch(error) {
-                console.error('Error:', error);
-                alert("There was an error!");
-            }
-        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("There was an error!");
+      }
     }
+  };
 
-
-    return (
-        <div  style={{
+  return (
+    <div
+      style={{
         fontFamily: '"Poppins", serif',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100vh',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
         background: `url(${IMG}) no-repeat center/cover`,
         // backgroundSize: Cover,
         // backgroundPosition: center,
-        }} className= 'meow-body'>
-        <div className="form-box register">
-                
-                <form className="sign-patient-form" action="">   
-                    <h1>Registration</h1>
-                    <div className="input-box">
-                        <input type="text"
-                        placeholder='Name' 
-                        onChange={(e) => setName(e.target.value)}
-                        required />
-                    </div>
-                    <div className="input-box">
-                        <input type="email" 
-                        placeholder='Email Id' 
-                        onChange={(e) => setEmail(e.target.value)}
-                        required />
-                    </div>
-                    <div className="input-box">
-                        <input type="tel" 
-                        placeholder='Phone No.'
-                        pattern='[0-9]{10}' 
-                        onChange={(e) => setPhone(e.target.value)}
-                        required />
-                    </div>
-                    <div className="input-box">
-                        <input type="text" 
-                        placeholder='Specialization'
-                        onChange={(e) => setSpecialization(e.target.value)}
-                        required />
-                    </div>
-                    <div className="input-box">
-                        <input type="password" 
-                        placeholder='Password'
-                        onChange={(e) => setPassword(e.target.value)}
-                        required />
-                    </div>
+      }}
+      className="meow-body"
+    >
+      <div className="form-box register">
+        <form className="sign-patient-form" action="">
+          <h1>Registration</h1>
+          <div className="input-box">
+            <input
+              type="text"
+              placeholder="Name"
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-box">
+            <input
+              type="email"
+              placeholder="Email Id"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-box">
+            <input
+              type="tel"
+              placeholder="Phone No."
+              pattern="[0-9]{10}"
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-box">
+            <input
+              type="text"
+              placeholder="Specialization"
+              onChange={(e) => setSpecialization(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-box">
+            <input
+              type="password"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
+          <div className="remember-forgot">
+            <label>
+              <input type="Checkbox" />I agree to the terms and conditions that
+              apply
+            </label>
+          </div>
 
-                    <div className="remember-forgot">
-                        <label><input type="Checkbox" />I agree to the terms and conditions that apply</label>
-                    </div>
+          <button onClick={(e) => interact(e)} type="submit">
+            Register
+          </button>
 
-                    <button onClick={(e) => interact(e)} type ="submit">Register</button>
-
-                    <div className="register-link">
-                        <p>Already have an account? <a href='#'>Login</a>
-                        </p>
-                    </div>
-                </form>
-            </div>
-
-
-
-        </div>
-    );
+          <div className="register-link">
+            <p>
+              Already have an account? <a href="#">Login</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 };
 
-export default DoctorSignUpPage
+export default DoctorSignUpPage;
