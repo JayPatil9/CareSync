@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import { X, Grid3X3 } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -14,6 +15,18 @@ import IMG from "../assets/caresync_logo.png";
 import BIMG from "../assets/bg_photo_3.jpg";
 import Card from "../components/Card";
 import { FaUserMd } from "react-icons/fa";
+=======
+import React from 'react';
+import { X,Grid3X3 } from 'lucide-react';
+import { useState,useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+import { initialize,getDoctor,gateway,getPatientsData,assignPatient,Filter } from "../backend/backend";
+import '../stylesheets/Doctor_Logbook.css';
+import IMG from '../assets/caresync_logo.png';
+import BIMG from '../assets/bg_photo_3.jpg';
+import Card from '../components/Card';
+
+>>>>>>> 9d9959811b25b22b0c2eb5a5c10878a8538839c9
 
 const Doctor_Logbook = () => {
   const [doctor, setDoctor] = useState({});
@@ -24,6 +37,11 @@ const Doctor_Logbook = () => {
   const [toggle, setToggle] = useState(true);
   const [assignPatientId, setAssignPatientId] = useState(null);
   const [assignTreatment, setAssignTreatment] = useState(null);
+
+  const navigate = useNavigate();
+  const gotoDProfile = () => {  
+      navigate("/doctor-profile");
+  };
 
   useEffect(() => {
     const loadData = async () => {
@@ -117,6 +135,7 @@ const Doctor_Logbook = () => {
             +
           </button>
         </div>
+<<<<<<< HEAD
       </div>
     );
   } else {
@@ -156,6 +175,14 @@ const Doctor_Logbook = () => {
                 Assign
               </button>
             </div>
+=======
+        <div className="navbar-right">
+          {/* <Plus className="icon" /> */}
+          <span className="doc_nb_contents_1">Calendar</span>
+          <Grid3X3 className="icon" />
+          <div onClick={gotoDProfile} className="profile-pic">
+            <img className='profile-pic' src={doctor.image?"https://"+gateway+"/ipfs/"+doctor.image:IMG} alt="Profile" />
+>>>>>>> 9d9959811b25b22b0c2eb5a5c10878a8538839c9
           </div>
         </div>
       </>

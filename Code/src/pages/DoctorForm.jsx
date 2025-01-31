@@ -26,17 +26,11 @@ const Form = () => {
 
     const [name, setName] = useState(null);
     const [image, setImage] = useState(null);
-    const [height, setHeight] = useState(null);
-    const [weight, setWeight] = useState(null);
-    const [dob, setDob] = useState(null);
     const [gender, setGender] = useState(null);
     const [phone, setPhone] = useState(null);
     const [email, setEmail] = useState(null);
     const [addr, setAddr] = useState(null);
-    const [bloodGroup, setBloodGroup] = useState(null);
-    const [allergies, setAllergies] = useState(null);
-    const [chronicConditions, setChronicConditions] = useState(null);
-    const [medications, setMedications] = useState(null);
+    const [specialization, setSpecialization] = useState(null);
     const [emergencyContact, setEmergencyContact] = useState(null);
     const [password, setPassword] = useState(null);
     const [confirmPassword, setConfirmPassword] = useState(null);
@@ -47,24 +41,18 @@ const Form = () => {
             alert("Passwords do not match");
             return;
         }
-        else if(name && image && height && weight && dob && email && phone && address && bloodGroup) {
+        else if(name && image && email && phone && address && specialization) {
             try {    
                 await initialize(setWeb3,setContract,setAddress);
                 const imghash = await upload_image(pinata,image);
                 const patient = {
                     name: name,
                     image: imghash,
-                    height: height,
-                    weight: weight,
-                    dob: dob,
                     gender: gender,
                     email: email,
                     phone: phone,
-                    address: addr,
-                    bloodGroup: bloodGroup,
-                    allergies: allergies,
-                    chronicConditions: chronicConditions,
-                    medications: medications,
+                    caddress: addr,
+                    specialization: specialization,
                     emergencyContact: emergencyContact,
                     password: password
                 };
@@ -82,7 +70,6 @@ const Form = () => {
     }
 
     return (
-        <div className="form-body">
         <div className="form--div">
         <form className="patient--form" action="">
             <h1 className="form--h1">Update Profile</h1>
@@ -93,28 +80,8 @@ const Form = () => {
             <label htmlFor="image">*Image:</label>
             <input onChange={(e) => setImage(e.target.files[0])} type="file" id="image" name="image" required></input>
 
-            <label htmlFor="height">*Height (in cm):</label>
-            <input
-            type="number"
-            id="height"
-            name="height"
-            step="0.1"
-            onChange={(e) => setHeight(e.target.value)}
-            required
-            ></input>
-
-            <label htmlFor="weight">*Weight (in kg):</label>
-            <input
-            type="number"
-            id="weight"
-            name="weight"
-            step="0.1"
-            onChange={(e) => setWeight(e.target.value)}
-            required
-            ></input>
-
-            <label htmlFor="dob">*Date of Birth:</label>
-            <input onChange={(e) => setDob(e.target.value)} type="date" id="dob" name="dob" required></input>
+            <label htmlFor="specialization">*Specialization:</label>
+            <input onChange={(e) => setSpecialization(e.target.value)} type="text" id="specialization" name="specialization" required></input>
 
             <label htmlFor="gender">*Gender:</label>
             <select onChange={(e) => setGender(e.target.value)} id="gender" name="gender" required>
@@ -128,25 +95,8 @@ const Form = () => {
             <label htmlFor="email">*Email:</label>
             <input onChange={(e) => setEmail(e.target.value)} type="email" id="email" name="email" required></input>
 
-            <label htmlFor="address">*Address:</label>
+            <label htmlFor="address">*Clinic Address:</label>
             <textarea onChange={(e) => setAddr(e.target.value)} id="address" name="address" required></textarea>
-
-            <label htmlFor="bloodGroup">*Blood Group:</label>
-            <input onChange={(e) => setBloodGroup(e.target.value)} type="text" id="bloodGroup" name="bloodGroup"></input>
-
-            <label htmlFor="allergies">Allergies:</label>
-            <input onChange={(e) => setAllergies(e.target.value)} type="text" id="allergies" name="allergies"></input>
-
-            <label htmlFor="chronicConditions">Chronic Conditions:</label>
-            <input
-            type="text"
-            id="chronicConditions"
-            name="chronicConditions"
-            onChange={(e) => setChronicConditions(e.target.value)}
-            ></input>
-
-            <label htmlFor="medications">Medications:</label>
-            <input onChange={(e) => setMedications(e.target.value)} type="text" id="medications" name="medications"></input>
 
             <label htmlFor="emergencyContact">Emergency Contact:</label>
             <input
@@ -171,7 +121,6 @@ const Form = () => {
 
             <button onClick={interact} type="submit">Submit</button>
         </form>
-        </div>
         </div>
     );
 };

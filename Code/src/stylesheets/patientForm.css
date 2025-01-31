@@ -1,4 +1,5 @@
 .form--h1 {
+<<<<<<< HEAD
   text-align: center;
   font-size: 24px;
   color: #ffffff;
@@ -82,6 +83,29 @@
 @media (max-width: 600px) {
   .form--div {
     padding: 15px;
+=======
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .form-body {
+    background: linear-gradient(to right, #e2e2e2, #2a8b8e);
+  }
+  
+  .form--div {
+    /* margin-top: 5px; */
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    /* margin: 5% auto; */
+    margin-right: auto;
+    margin-left: auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+>>>>>>> 9d9959811b25b22b0c2eb5a5c10878a8538839c9
   }
 
   .patient--form button[type="submit"] {
