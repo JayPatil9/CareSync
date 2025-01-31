@@ -4,15 +4,22 @@
     color: #333;
     font-weight: 600;
   }
+
+  .form-body {
+    background: linear-gradient(to right, #e2e2e2, #2a8b8e);
+  }
   
   .form--div {
+    /* margin-top: 5px; */
     width: 90%;
     max-width: 500px;
-    /* padding: 30px; */
-    margin: 5% auto;
-    background: linear-gradient(to right, #ffffff, #f0f4f8);
+    padding: 30px;
+    /* margin: 5% auto; */
+    margin-right: auto;
+    margin-left: auto;
+    background: white;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   }
   
   .patient--form {

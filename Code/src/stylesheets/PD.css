@@ -3,7 +3,7 @@
   
   .pd--body {
     font-family: Arial, sans-serif;
-    background-color: #f4f7f6;
+    /* background-color: red; */
     color: #333;
     line-height: 1.6;
   }
@@ -88,6 +88,7 @@
     flex-wrap: wrap;
     max-width: 1200px;
     margin: auto;
+    /* background: red; */
   }
   
   .pd--left-div,

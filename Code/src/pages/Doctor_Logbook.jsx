@@ -1,6 +1,7 @@
 import React from 'react';
 import { X,Grid3X3 } from 'lucide-react';
 import { useState,useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { initialize,getDoctor,gateway,getPatientsData,assignPatient,Filter } from "../backend/backend";
 import '../stylesheets/Doctor_Logbook.css';
 import IMG from '../assets/caresync_logo.png';
@@ -18,6 +19,11 @@ const Doctor_Logbook = () => {
   const [toggle, setToggle] = useState(true);
   const [assignPatientId, setAssignPatientId] = useState(null);
   const [assignTreatment, setAssignTreatment] = useState(null);
+
+  const navigate = useNavigate();
+  const gotoDProfile = () => {  
+      navigate("/doctor-profile");
+  };
 
   useEffect(() => {
       const loadData = async () => {
@@ -87,7 +93,7 @@ const Doctor_Logbook = () => {
           {/* <Plus className="icon" /> */}
           <span className="doc_nb_contents_1">Calendar</span>
           <Grid3X3 className="icon" />
-          <div className="profile-pic">
+          <div onClick={gotoDProfile} className="profile-pic">
             <img className='profile-pic' src={doctor.image?"https://"+gateway+"/ipfs/"+doctor.image:IMG} alt="Profile" />
           </div>
         </div>
