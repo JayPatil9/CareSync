@@ -61,7 +61,7 @@ const ProfileCard = () => {
       <div className="profile-details">
         <div className="detail">
           <span className="label">Patient ID : </span>
-          <span className="value">231030069</span>
+          <span className="value">{patient.id?patient.id:"N/A"}</span>
         </div>
         <div className="detail">
           <span className="label">Age : </span>

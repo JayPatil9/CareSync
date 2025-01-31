@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 contract CareSync {
 
     struct Patient {
-        address id;
+        uint id;
         // string name;
         // string gender;
         // uint age;
@@ -28,7 +28,7 @@ contract CareSync {
     
 
     struct Doctor {
-        address id;
+        uint id;
 
 
         // string name;
@@ -38,6 +38,8 @@ contract CareSync {
         // string sch;
 
         string jsonHash;
+        uint[] patientsId;
+        string[] treatmentArr;
 
         // string cvHash;
         // string[] payment;
@@ -49,20 +51,30 @@ contract CareSync {
     mapping (address => Doctor) public doctors;
     mapping (address => Patient) public patients;
 
+    uint public numPatient;
+    uint public numDoctors;
+
+    Patient[] public patientsArr;
+    Doctor[] public doctorsArr;
+
+    constructor() {
+         numPatient = 0;
+         numDoctors = 0;
+     }
 
 
-
-    function addPatient(string memory _jsonHash, address _patientId,string[] memory _doctors) public {
+    function addPatient(string memory _jsonHash, address _patientId) public {
 
         Patient memory newPatient = Patient({
-            id: _patientId,
+            id: numPatient,
             jsonHash: _jsonHash,
             next_appointment: "",
-            doctors: _doctors,
+            doctors: new string[](0),
             vitalsHash: ""
         });
-
         patients[_patientId] = newPatient;
+        patientsArr.push(newPatient);
+        numPatient++;
     }
 
     function setPatient(address _patientID, string memory _jsonHash) public {
@@ -96,14 +108,36 @@ contract CareSync {
     function addDoctor(string memory _jsonHash, address _doctorId) public {
 
         Doctor memory newDoctor = Doctor({
-            id: _doctorId,
-            jsonHash: _jsonHash
+            id: numDoctors,
+            jsonHash: _jsonHash,
+            patientsId: new uint[](0),
+            treatmentArr: new string[](0)
         });
         doctors[_doctorId] = newDoctor;
+        doctorsArr.push(newDoctor);
+        numDoctors++;
     }
 
     function getDoctor(address _id) public view returns (string memory){
         return doctors[_id].jsonHash;
+    }
+
+    function assignPatient(address _docId,uint _patientID,string memory _treartment) public {
+        doctors[_docId].patientsId.push(_patientID);
+        doctors[_docId].treatmentArr.push(_treartment);
+    }
+
+    function getPatientsData(address _docId) public view returns (string[][] memory) {
+        uint[] memory arr = doctors[_docId].patientsId;
+        string[] memory brr = doctors[_docId].treatmentArr;
+        string[][] memory qrr=new string[][](arr.length);
+        for (uint i=0;i<arr.length;i++) {
+            string[] memory temp=new string[](2);
+            temp[0] = patientsArr[arr[i]].jsonHash;
+            temp[1] = brr[i];
+            qrr[i] = temp;
+        }
+        return qrr;
     }
 
 

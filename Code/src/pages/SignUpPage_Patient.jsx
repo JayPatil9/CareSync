@@ -2,7 +2,7 @@ import React from 'react'
 import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PinataSDK } from 'pinata-web3';
-import { gateway, initialize,setPatient,JWT,getPatient } from '../backend/backend';
+import { gateway, initialize,addPatient,JWT,getPatient } from '../backend/backend';
 import '../stylesheets/SignUpPage_Patient.css';
 import IMG from '../assets/bg_photo_3.jpg';
 
@@ -25,7 +25,7 @@ const PatientSignUpPage = () => {
         navigate("/login")
     }
     const gotoDashboard = () => {
-        navigate("/patient-dashboard")
+        navigate("/dashboard")
     }
 
     const pinata = new PinataSDK({
@@ -79,7 +79,7 @@ const PatientSignUpPage = () => {
                     password: password
                 };
                 const ipfsHash = await pinata.upload.json(patient);
-                const flag = await setPatient(web3,address,contract,ipfsHash.IpfsHash);
+                const flag = await addPatient(web3,address,contract,ipfsHash.IpfsHash);
                 if(flag) {
                     gotoDashboard();
                 }

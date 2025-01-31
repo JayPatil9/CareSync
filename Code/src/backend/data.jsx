@@ -1,5 +1,10 @@
 export const contractABI = [
 	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "string",
@@ -28,11 +33,6 @@ export const contractABI = [
 				"internalType": "address",
 				"name": "_patientId",
 				"type": "address"
-			},
-			{
-				"internalType": "string[]",
-				"name": "_doctors",
-				"type": "string[]"
 			}
 		],
 		"name": "addPatient",
@@ -44,52 +44,21 @@ export const contractABI = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_patientID",
+				"name": "_docId",
 				"type": "address"
 			},
 			{
-				"internalType": "string",
-				"name": "_nextAppointment",
-				"type": "string"
-			}
-		],
-		"name": "setnextAppointment",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
+				"internalType": "uint256",
 				"name": "_patientID",
-				"type": "address"
+				"type": "uint256"
 			},
 			{
 				"internalType": "string",
-				"name": "_jsonHash",
+				"name": "_treartment",
 				"type": "string"
 			}
 		],
-		"name": "setPatient",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_patientID",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "_vitalHash",
-				"type": "string"
-			}
-		],
-		"name": "setVitals",
+		"name": "assignPatient",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -105,9 +74,33 @@ export const contractABI = [
 		"name": "doctors",
 		"outputs": [
 			{
-				"internalType": "address",
+				"internalType": "uint256",
 				"name": "id",
-				"type": "address"
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "jsonHash",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "doctorsArr",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
 			},
 			{
 				"internalType": "string",
@@ -198,6 +191,25 @@ export const contractABI = [
 		"inputs": [
 			{
 				"internalType": "address",
+				"name": "_docId",
+				"type": "address"
+			}
+		],
+		"name": "getPatientsData",
+		"outputs": [
+			{
+				"internalType": "string[][]",
+				"name": "",
+				"type": "string[][]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
 				"name": "_patientID",
 				"type": "address"
 			}
@@ -214,6 +226,32 @@ export const contractABI = [
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "numDoctors",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "numPatient",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -224,9 +262,9 @@ export const contractABI = [
 		"name": "patients",
 		"outputs": [
 			{
-				"internalType": "address",
+				"internalType": "uint256",
 				"name": "id",
-				"type": "address"
+				"type": "uint256"
 			},
 			{
 				"internalType": "string",
@@ -245,6 +283,94 @@ export const contractABI = [
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "patientsArr",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "jsonHash",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "next_appointment",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "vitalsHash",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_patientID",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_jsonHash",
+				"type": "string"
+			}
+		],
+		"name": "setPatient",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_patientID",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_vitalHash",
+				"type": "string"
+			}
+		],
+		"name": "setVitals",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_patientID",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_nextAppointment",
+				"type": "string"
+			}
+		],
+		"name": "setnextAppointment",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]

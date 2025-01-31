@@ -1,4 +1,4 @@
-.classroom-container {
+.logbook-container {
     min-height: 100vh;
     background-color: #f8f9fa;
 }
@@ -218,4 +218,115 @@
     .squares-grid {
         gap: 1rem;
     }
+}
+
+.add-button {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: white;
+    color: #007bff;
+    font-size: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+
+.assign-body {
+    display: flex;
+    border: #000000 solid 2px;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    
+}
+
+.assign-card {
+    display: flex;
+    flex-direction: column;
+    height:50%;
+    width:60%;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    background-color: rgba(125, 125, 125, 0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.assign-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.assign-button:hover {
+    background-color: #0056b3;
+}
+
+.assign-button:active {
+    transform: translateY(1px);
+}
+
+.assign-button:focus {
+    outline: none;
+}
+
+.assign-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15%;
+    width: 75%;
+}
+
+.assign-form input {
+    padding: 0.5rem 1rem;
+    color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 23px;
+    font-size: 1rem;
+    background-color: rgba(125, 125, 125, 0.05);
+    
+}
+
+.assign-form input[type="number"]::-webkit-inner-spin-button,
+.assign-form input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.assign-form input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+
+.assign-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.assign-body h2 {
+    font-size: 1.5rem;
+    color:white;
+    font-weight: 500;
+    margin-bottom: 5px;
 }

@@ -75,6 +75,24 @@ export const setPatient = async (web3,address,contract,ipfsHash) => {
       }
 }
 
+export const addPatient = async (web3,address,contract,ipfsHash) => {
+  try {
+
+      const txObject = {
+        from: address,
+        to: contractAddress,
+        data: contract.methods.addPatient(ipfsHash,address).encodeABI(),     
+        gas: 2000000,
+      };
+      const txHash = await web3.eth.sendTransaction(txObject);
+      return true;
+    } catch (error) {
+      console.error('Error:', error);
+      alert("There was an error!");
+      return false;
+    }
+}
+
 export const setDoctor = async (web3,address,contract,ipfsHash) => {
   try {
 
@@ -172,4 +190,52 @@ export const upload_image = async (pinata,imgFile) => {
       console.error("Error uploading the image:", error);
       return "Error";
   }
+}
+
+
+export const getPatientsData = async (address,contract) => {
+  try {
+    const patients = await contract.methods.getPatientsData(address).call();
+    // console.log(patients);
+    return patients;
+  } catch (error) {
+    console.error('Error:', error);
+    return "error";
+  }
+}
+
+export const Filter = async (data,logo) => {
+  const squares = [];
+  for(let i=0;i<data.length;i++) {
+    const response = await fetch(`https://${gateway}/ipfs/${data[i][0]}`);
+    if(response.status!==200) {
+      return [];
+    }
+    const patient = await response.json();
+    squares.push({
+      name: patient.name,
+      treatment: data[i][1],
+      profilePic: patient.image?"https://"+gateway+"/ipfs/"+patient.image:logo,
+    });
+  }
+  // console.log(squares);
+  return squares;
+};
+
+export const assignPatient = async (web3,address,contract,patientId,treatment) => {
+  try {
+
+      const txObject = {
+        from: address,
+        to: contractAddress,
+        data: contract.methods.assignPatient(address,patientId,treatment).encodeABI(),     
+        gas: 2000000,
+      };
+      const txHash = await web3.eth.sendTransaction(txObject);
+      return true;
+    } catch (error) {
+      console.error('Error:', error);
+      alert("There was an error!");
+      return false;
+    }
 }

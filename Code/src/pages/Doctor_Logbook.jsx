@@ -1,19 +1,23 @@
 import React from 'react';
-import { Menu, Plus, Grid3X3 } from 'lucide-react';
+import { X,Grid3X3 } from 'lucide-react';
 import { useState,useEffect } from "react";
-import { initialize,getDoctor,gateway } from "../backend/backend";
+import { initialize,getDoctor,gateway,getPatientsData,assignPatient,Filter } from "../backend/backend";
 import '../stylesheets/Doctor_Logbook.css';
 import IMG from '../assets/caresync_logo.png';
-import { FaCircleUser } from "react-icons/fa6";
-import { CgWebsite } from "react-icons/cg";
+import BIMG from '../assets/bg_photo_3.jpg';
+import Card from '../components/Card';
 
 
-const ClassroomSquares = ({ squares = [{name:"Kartik Sharma",treatment:"Fever",bgColor:"#b6fff4",profilePic:IMG},{name:"Mr.Mehta",treatment:"Fever",bgColor:"#000000",profilePic:IMG}] }) => {
+const Doctor_Logbook = () => {
 
   const [doctor, setDoctor] = useState({});
   const [address, setAddress] = useState(null);
   const [contract, setContract] = useState(null);
   const [web3, setWeb3] = useState(null);
+  const [squares, setSquares] = useState(null);
+  const [toggle, setToggle] = useState(true);
+  const [assignPatientId, setAssignPatientId] = useState(null);
+  const [assignTreatment, setAssignTreatment] = useState(null);
 
   useEffect(() => {
       const loadData = async () => {
@@ -27,25 +31,51 @@ const ClassroomSquares = ({ squares = [{name:"Kartik Sharma",treatment:"Fever",b
       loadData();
   }, []);
 
+  const loadData = async () => {
+    try {
+        if(contract) {
+        await getDoctor(address,contract,setDoctor);
+        const data = await getPatientsData(address,contract);
+        const temp = await Filter(data,IMG);
+        setSquares(temp);
+        // console.log(typeof(temp));
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert("There was an error!");
+    }
+    };
+
+
   useEffect(() => {
-      const loadData = async () => {
-      try {
-          if(contract) {
-          await getDoctor(address,contract,setDoctor);
-          }
-      } catch (error) {
-          console.error('Error:', error);
-          alert("There was an error!");
-      }
-      };
       loadData();
   }, [contract]);
 
+  const assign = async () => {
+    try {
+        let flag = false;
+        if(!assignPatientId || !assignTreatment) {
+            alert("Please fill all the fields!");
+            return;
+        }
+        if(contract) {
+            flag = await assignPatient(web3,address,contract,assignPatientId,assignTreatment);
+        }
+        if(flag) {
+            alert("Patient Assigned Successfully!");
+            setToggle(!toggle);
+            loadData();
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert("There was an error!");
+    }
+  };
 
-
-
+  if(toggle) {
   return (
-    <div className="classroom-container">
+    <div className="logbook-body">
+    <div className="logbook-container">
       {/* Top Navigation Bar */}
       <nav className="navbar">
         <div className="navbar-left">
@@ -66,38 +96,38 @@ const ClassroomSquares = ({ squares = [{name:"Kartik Sharma",treatment:"Fever",b
       {/* Main Content */}
       <div className="main-content">
         <div className="squares-grid">
-          {squares.map((square, index) => (
-            <div key={index} className="square">
-              <div 
-                className="square-header" 
-                style={{ backgroundColor: square.bgColor }}
-              >
-                <div className="square-text">
-                  <h2 className="square-title">{square.name}</h2>
-                  <p className="treatment-text">{square.treatment}</p>
-                </div>
-                <div className="profile-circle">
-                  <img 
-                    src={square.profilePic} 
-                    alt={square.name} 
-                    className="profile-image"
-                  />
-                </div>
-              </div>
-              <div className="square-footer">
-                <button className="icon-button">
-                  <FaCircleUser />
-                </button>
-                <button className="icon-button">
-                  <CgWebsite />
-                </button>
-              </div>
-            </div>
-          ))}
+          {
+              squares && squares.map((square, index) => (
+                  <Card key={index} square={square} index={index} />
+              ))
+          }
+        </div>
+      </div>
+      <button onClick={() => setToggle(!toggle)} className="add-button">+</button>
+    </div>
+    </div>
+  );
+    } else {
+    return(
+      <>
+      <div style={{background: `url(${BIMG}) no-repeat center/cover`}} className="assign-body">
+      <div className="assign-card">
+        <div className="assign-header">
+          <h2 className="assign-title">Add Patient</h2>
+          <X size={40} className="assign-close" onClick={() => setToggle(!toggle)} />
+        </div>
+        <div className="assign-form">
+          <input type="number" placeholder="Patient Id" className="assign-input" onChange={(e) => setAssignPatientId(e.target.value)} required/>
+          <br />
+          <input type="text" placeholder="Treatment" className="assign-input" onChange={(e) => setAssignTreatment(e.target.value)} required/>
+          <br />
+          <button onClick={assign} className="assign-button">Assign</button>
         </div>
       </div>
     </div>
-  );
+    </>
+    );
+  }
 };
 
-export default ClassroomSquares;
+export default Doctor_Logbook;
