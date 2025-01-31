@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import { X, Grid3X3 } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -15,18 +14,7 @@ import IMG from "../assets/caresync_logo.png";
 import BIMG from "../assets/bg_photo_3.jpg";
 import Card from "../components/Card";
 import { FaUserMd } from "react-icons/fa";
-=======
-import React from 'react';
-import { X,Grid3X3 } from 'lucide-react';
-import { useState,useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-import { initialize,getDoctor,gateway,getPatientsData,assignPatient,Filter } from "../backend/backend";
-import '../stylesheets/Doctor_Logbook.css';
-import IMG from '../assets/caresync_logo.png';
-import BIMG from '../assets/bg_photo_3.jpg';
-import Card from '../components/Card';
-
->>>>>>> 9d9959811b25b22b0c2eb5a5c10878a8538839c9
+import { useNavigate } from "react-router-dom";
 
 const Doctor_Logbook = () => {
   const [doctor, setDoctor] = useState({});
@@ -39,8 +27,8 @@ const Doctor_Logbook = () => {
   const [assignTreatment, setAssignTreatment] = useState(null);
 
   const navigate = useNavigate();
-  const gotoDProfile = () => {  
-      navigate("/doctor-profile");
+  const gotoDProfile = () => {
+    navigate("/doctor-profile");
   };
 
   useEffect(() => {
@@ -135,57 +123,48 @@ const Doctor_Logbook = () => {
             +
           </button>
         </div>
-<<<<<<< HEAD
       </div>
     );
   } else {
     return (
-      <>
-        <div
-          style={{ background: `url(${BIMG}) no-repeat center/cover` }}
-          className="assign-body"
-        >
-          <div className="assign-card">
-            <div className="assign-header">
-              <h2 className="assign-title">Add Patient</h2>
-              <X
-                size={40}
-                className="assign-close"
-                onClick={() => setToggle(!toggle)}
-              />
-            </div>
-            <div className="assign-form">
-              <input
-                type="number"
-                placeholder="Patient Id"
-                className="assign-input"
-                onChange={(e) => setAssignPatientId(e.target.value)}
-                required
-              />
-              <br />
-              <input
-                type="text"
-                placeholder="Treatment"
-                className="assign-input"
-                onChange={(e) => setAssignTreatment(e.target.value)}
-                required
-              />
-              <br />
-              <button onClick={assign} className="assign-button">
-                Assign
-              </button>
-            </div>
-=======
-        <div className="navbar-right">
-          {/* <Plus className="icon" /> */}
-          <span className="doc_nb_contents_1">Calendar</span>
-          <Grid3X3 className="icon" />
-          <div onClick={gotoDProfile} className="profile-pic">
-            <img className='profile-pic' src={doctor.image?"https://"+gateway+"/ipfs/"+doctor.image:IMG} alt="Profile" />
->>>>>>> 9d9959811b25b22b0c2eb5a5c10878a8538839c9
+      <div
+        style={{ background: `url(${BIMG}) no-repeat center/cover` }}
+        className="assign-body"
+      >
+        <div className="assign-card">
+          <div className="assign-header">
+            <h2 className="assign-title">Add Patient</h2>
+            <X
+              size={40}
+              className="assign-close"
+              onClick={() => setToggle(!toggle)}
+            />
+          </div>
+          <div className="assign-form">
+            <input
+              type="number"
+              placeholder="Patient Id"
+              className="assign-input"
+              onChange={(e) => setAssignPatientId(e.target.value)}
+              required
+            />
+            <br />
+            <input
+              type="text"
+              placeholder="Treatment"
+              className="assign-input"
+              onChange={(e) => setAssignTreatment(e.target.value)}
+              required
+            />
+            <br />
+            <button onClick={assign} className="assign-button">
+              Assign
+            </button>
           </div>
         </div>
-      </>
+
+        {/* Navbar Right Section */}
+      </div>
     );
   }
 };
