@@ -1,14 +1,21 @@
 import 'react';
 import { FaCircleUser } from "react-icons/fa6";
 import { CgWebsite } from "react-icons/cg";
+import { useNavigate } from 'react-router-dom';
 
 export default function Card(props) {
     const square = props.square;
     const index = props.index;
+
+    const navigate = useNavigate();
+    const gotoUpdates = () => {
+        navigate("/update-vitals");
+    };
+
     // console.log(square);
     return (
         square &&
-        <div key={index} className="square">
+        <div key={index} className="square" onClick={gotoUpdates}>
             <div
                 className="square-header" 
                 style={{ backgroundColor: "#000000" }}

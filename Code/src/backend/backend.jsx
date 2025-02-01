@@ -93,13 +93,13 @@ export const addPatient = async (web3,address,contract,ipfsHash) => {
     }
 }
 
-export const setDoctor = async (web3,address,contract,ipfsHash) => {
+export const setDoctor = async (web3,address,contract,ipfsHash,name) => {
   try {
 
       const txObject = {
         from: address,
         to: contractAddress,
-        data: contract.methods.addDoctor(ipfsHash,address).encodeABI(),    
+        data: contract.methods.addDoctor(ipfsHash,address,name).encodeABI(),    
         gas: 2000000,
       };
       const txHash = await web3.eth.sendTransaction(txObject);
@@ -133,6 +133,24 @@ export const getDoctor = async (address,contract,setDoctor) => {
   }
 }
 
+export const setVitals = async (web3,address,contract,ipfsHash) => {
+  try {
+
+      const txObject = {
+        from: address,
+        to: contractAddress,
+        data: contract.methods.setVitals(address,ipfsHash).encodeABI(),    
+        gas: 2000000,
+      };
+      const txHash = await web3.eth.sendTransaction(txObject);
+      return true;
+    } catch (error) {
+      console.error('Error:', error);
+      alert("There was an error!");
+      return false;
+    }
+}
+
 export const getVitals = async (address,contract,setVitals) => {
   try {
       const vitals = await contract.methods.getVitals(address).call();
@@ -142,6 +160,24 @@ export const getVitals = async (address,contract,setVitals) => {
       alert("There was an error!");
       return "error";
   }
+}
+
+export const setNextAppointment = async (web3,address,contract,ipfsHash) => {
+  try {
+
+      const txObject = {
+        from: address,
+        to: contractAddress,
+        data: contract.methods.setnextAppointment(address,ipfsHash).encodeABI(),    
+        gas: 2000000,
+      };
+      const txHash = await web3.eth.sendTransaction(txObject);
+      return true;
+    } catch (error) {
+      console.error('Error:', error);
+      alert("There was an error!");
+      return false;
+    }
 }
 
 export const getAppointments = async (address,contract,setAppointments) => {
@@ -238,4 +274,16 @@ export const assignPatient = async (web3,address,contract,patientId,treatment) =
       alert("There was an error!");
       return false;
     }
+}
+
+export const getPatientbyID = async (_id,contract,setAddress) => {
+  try {
+    const address = await contract.methods.getPatientAddrById(_id).call();
+    // console.log(patients);
+    setAddress(address);
+    return address;
+  } catch (error) {
+    console.error('Error:', error);
+    return "error";
+  }
 }

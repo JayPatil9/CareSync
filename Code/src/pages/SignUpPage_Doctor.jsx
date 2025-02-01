@@ -83,7 +83,8 @@ const DoctorSignUpPage = () => {
           web3,
           address,
           contract,
-          ipfsHash.IpfsHash
+          ipfsHash.IpfsHash,
+          name
         );
         if (flag) {
           gotoLogbook();

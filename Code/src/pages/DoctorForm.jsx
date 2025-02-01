@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { PinataSDK } from "pinata-web3";
-import { initialize,setPatient,upload_image } from "../backend/backend";
+import { initialize,setDoctor,upload_image } from "../backend/backend";
 import "../stylesheets/patientForm.css";
 import { Search } from "lucide-react";
 
@@ -57,7 +57,7 @@ const Form = () => {
                     password: password
                 };
                 const ipfsHash = await pinata.upload.json(patient);
-                await setPatient(web3,address,contract,ipfsHash.IpfsHash);
+                await setDoctor(web3,address,contract,ipfsHash.IpfsHash,name);
                 gotoProfile();
             } catch(error) {
                 console.error('Error:', error);

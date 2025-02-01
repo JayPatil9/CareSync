@@ -17,7 +17,6 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
   width: 768px;
   max-width: 100%;
-  /* min-height: 100vh; */
   padding: 20px;
 }
 
@@ -67,7 +66,6 @@
 .label {
   font-weight: 500;
   color: #086669;
-  text-align: center;
 }
 
 .value {

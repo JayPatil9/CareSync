@@ -10,6 +10,7 @@ import DProfile from './pages/doctorProfile'
 import DLogbook from './pages/Doctor_Logbook'
 import PForm from './pages/PatientForm'
 import Dform from './pages/DoctorForm'
+import Update from './pages/UpdateVitals'
 import './App.css'
 
 
@@ -27,6 +28,7 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/doctor-logbook" element={<DLogbook />} />
         <Route exact path="/patient-form" element={<PForm />} />
         <Route exact path="/doctor-form" element={<Dform />} />
+        <Route exact path="/update-vitals" element={<Update />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </BrowserRouter>
