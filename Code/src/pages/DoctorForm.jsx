@@ -35,13 +35,25 @@ const Form = () => {
     const [password, setPassword] = useState(null);
     const [confirmPassword, setConfirmPassword] = useState(null);
 
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                await initialize(setWeb3,setContract,setAddress);
+            } catch (error) {
+                console.error('Error:', error);
+                alert("There was an error!");
+            }
+        };
+        loadData();
+    }, []);
+
     const interact = async (e) => {
         e.preventDefault();
         if(password && password !== confirmPassword){
             alert("Passwords do not match");
             return;
         }
-        else if(name && image && email && phone && address && specialization) {
+        else if(name && image && email && phone && addr && specialization) {
             try {    
                 await initialize(setWeb3,setContract,setAddress);
                 const imghash = await upload_image(pinata,image);

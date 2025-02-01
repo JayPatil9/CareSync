@@ -4,6 +4,7 @@ import { PinataSDK } from "pinata-web3";
 import { initialize,setPatient,upload_image } from "../backend/backend";
 import "../stylesheets/patientForm.css";
 import { Search } from "lucide-react";
+import { use } from "react";
 
 
 const JWT = import.meta.env.VITE_JWT;
@@ -47,7 +48,7 @@ const Form = () => {
             alert("Passwords do not match");
             return;
         }
-        else if(name && image && height && weight && dob && email && phone && address && bloodGroup) {
+        else if(name && image && height && weight && dob && email && phone && addr && bloodGroup) {
             try {    
                 await initialize(setWeb3,setContract,setAddress);
                 const imghash = await upload_image(pinata,image);
@@ -77,9 +78,22 @@ const Form = () => {
             }
         }
         else {
+            console.log(name,image,height,weight,dob,email,phone,address,bloodGroup);
             alert("Please fill all the required fields");
         }
     }
+
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                await initialize(setWeb3,setContract,setAddress);
+            } catch (error) {
+                console.error('Error:', error);
+                alert("There was an error!");
+            }
+        };
+        loadData();
+    }, []);
 
     return (
         <div className="form-body">
