@@ -1,12 +1,12 @@
 /* Profile Card Body */
 .profile--body {
   background-color: #c9d6ff;
-  background: linear-gradient(to right, #e2e2e2, #2a8b8e);
+  background: linear-gradient(to right, #e2e2e2, #2a8b8e) no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   padding: 20px;
 }
 
@@ -17,7 +17,7 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
   width: 768px;
   max-width: 100%;
-  min-height: 480px;
+  /* min-height: 100vh; */
   padding: 20px;
 }
 

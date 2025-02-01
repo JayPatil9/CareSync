@@ -11,7 +11,7 @@ import {
 } from "../backend/backend";
 import "../stylesheets/Doctor_Logbook.css";
 import IMG from "../assets/caresync_logo.png";
-import BIMG from "../assets/bg_photo_3.jpg";
+import BIMG from "../assets/signuppagebg.jpg";
 import Card from "../components/Card";
 import { FaUserMd } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";

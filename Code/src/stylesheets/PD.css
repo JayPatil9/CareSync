@@ -6,7 +6,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-<<<<<<< HEAD
 body {
   background: linear-gradient(135deg, #2a8b8e, #76c6c9, #ffffff);
   min-height: 100vh;
@@ -142,116 +141,6 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
   .pd--contentcontainer {
-=======
-  
-  .pd--body {
-    font-family: Arial, sans-serif;
-    /* background-color: red; */
-    color: #333;
-    line-height: 1.6;
-  }
-  
-  /* Section Styling */
-  .pd--sec {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    margin: 20px auto;
-    height: 80px;
-    max-width: 1200px;
-  }
-  
-  /* Logo Styling */
-  .pd--logo {
-    flex: 0 0 auto;
-  }
-  
-  .pd--logo img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #00796b;
-  }
-  
-  /* Navigation Menu Styling */
-  .pd--container {
-    display: flex;
-    gap: 20px;
-    list-style-type: none;
-  }
-  
-  .pd--container a {
-    text-decoration: none;
-    color: #00796b;
-    font-weight: bold;
-    font-size: 18px;
-    transition: color 0.3s, transform 0.3s;
-  }
-  
-  .pd--container a:hover {
-    color: #004d40;
-    transform: scale(1.1);
-  }
-  
-  .pd--container li {
-    padding: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
-  .pd--container li:hover {
-    background-color: #f0f0f0;
-  }
-  
-  /* Profile Image Styling */
-  .pd--profile {
-    margin-left: auto;
-  }
-  
-  .pd--profile img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #00796b;
-  }
-  
-  /* Content Section */
-  .pd--contentcontainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px;
-    gap: 20px;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: auto;
-    /* background: red; */
-  }
-  
-  .pd--left-div,
-  .pd--top-right,
-  .pd--bottom-right {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .pd--left-div {
-    flex: 1 1 60%;
-    min-width: 300px;
-  }
-  
-  .pd--right-divs {
-    flex: 1 1 35%;
-    display: flex;
->>>>>>> 9d9959811b25b22b0c2eb5a5c10878a8538839c9
     flex-direction: column;
   }
 
