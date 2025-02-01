@@ -5,6 +5,7 @@ contract CareSync {
 
     struct Patient {
         uint id;
+        address paddr;
         // string name;
         // string gender;
         // uint age;
@@ -29,9 +30,9 @@ contract CareSync {
 
     struct Doctor {
         uint id;
+        address daddr; 
 
-
-        // string name;
+        string name;
         // string speciality;
         // string imgHash;
         // uint contact;
@@ -40,6 +41,7 @@ contract CareSync {
         string jsonHash;
         uint[] patientsId;
         string[] treatmentArr;
+        address[] patientsAddr;
 
         // string cvHash;
         // string[] payment;
@@ -67,6 +69,7 @@ contract CareSync {
 
         Patient memory newPatient = Patient({
             id: numPatient,
+            paddr: _patientId,
             jsonHash: _jsonHash,
             next_appointment: "",
             doctors: new string[](0),
@@ -105,13 +108,16 @@ contract CareSync {
         return patients[_patientID].doctors;
     }
         
-    function addDoctor(string memory _jsonHash, address _doctorId) public {
+    function addDoctor(string memory _jsonHash, address _doctorId,string memory _name) public {
 
         Doctor memory newDoctor = Doctor({
+            name: _name,
             id: numDoctors,
+            daddr: _doctorId,
             jsonHash: _jsonHash,
             patientsId: new uint[](0),
-            treatmentArr: new string[](0)
+            treatmentArr: new string[](0),
+            patientsAddr: new address[](0)
         });
         doctors[_doctorId] = newDoctor;
         doctorsArr.push(newDoctor);
@@ -125,6 +131,8 @@ contract CareSync {
     function assignPatient(address _docId,uint _patientID,string memory _treartment) public {
         doctors[_docId].patientsId.push(_patientID);
         doctors[_docId].treatmentArr.push(_treartment);
+        doctors[_docId].patientsAddr.push((patientsArr[_patientID]).paddr);
+        patients[patientsArr[_patientID].paddr].doctors.push(doctors[_docId].name);
     }
 
     function getPatientsData(address _docId) public view returns (string[][] memory) {
@@ -132,12 +140,16 @@ contract CareSync {
         string[] memory brr = doctors[_docId].treatmentArr;
         string[][] memory qrr=new string[][](arr.length);
         for (uint i=0;i<arr.length;i++) {
-            string[] memory temp=new string[](2);
+            string[] memory temp=new string[](3);
             temp[0] = patientsArr[arr[i]].jsonHash;
             temp[1] = brr[i];
             qrr[i] = temp;
         }
         return qrr;
+    }
+
+    function getPatientAddrById(uint _id) public view returns (address) {
+        return patientsArr[_id].paddr;
     }
 
 
